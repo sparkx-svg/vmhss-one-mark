@@ -2329,6 +2329,7 @@ let currentFilter = 'all';
 let lastResultData = null;
 let student = {name:'', cls:''};
 let soundOn = true;
+let vibrationOn = true;
 
 /* ================= STORAGE (Firestore for signed-in students, localStorage for guests) =================
    CLOUD.data is an in-memory cache. lsGet/lsSet read/write that cache.
@@ -2391,9 +2392,7 @@ function continueAsGuest(){
   if(saved && saved.name && saved.cls){
     student = saved;
     applyStudentUI();
-    soundOn = lsGet('cs_sound_on', true);
-    applyFontSize(lsGet('cs_fontsize', 'normal'));
-    currentSubject = lsGet('cs_subject', 'cs');
+    applyLoadedPreferences();
     document.getElementById('welcomeScreen').style.display = 'none';
     switchScreen('subjectScreen');
   } else {
@@ -2460,9 +2459,7 @@ fbAuth.onAuthStateChanged(async (user)=>{
   if(saved && saved.name && saved.cls){
     student = saved;
     applyStudentUI();
-    soundOn = lsGet('cs_sound_on', true);
-    applyFontSize(lsGet('cs_fontsize', 'normal'));
-    currentSubject = lsGet('cs_subject', 'cs');
+    applyLoadedPreferences();
     document.getElementById('welcomeScreen').style.display = 'none';
     switchScreen('subjectScreen');
     mirrorToClassLeaderboard();
@@ -2580,6 +2577,7 @@ function addToLeaderboard(entry){
    Guests are skipped — they have no stable identity across visits. */
 function mirrorToClassLeaderboard(){
   if(CLOUD.mode !== 'cloud' || !CLOUD.uid) return;
+  if(!lsGet('cs_leaderboard_visible', true)) return; // student opted out in Settings
   const payload = {
     name: student.name || 'Student',
     cls: student.cls || '-',
@@ -2730,14 +2728,37 @@ function soundSelect(){ playTone(600, 0.07, 'sine', 0.04); }
 function soundSuccess(){ playTone(523.25,0.12,'sine',0.05); setTimeout(()=>playTone(659.25,0.12,'sine',0.05),100); setTimeout(()=>playTone(783.99,0.18,'sine',0.05),200); }
 function soundLevelUp(){ [523,659,784,1046].forEach((f,i)=>setTimeout(()=>playTone(f,0.15,'triangle',0.05),i*90)); }
 function toggleSound(){
-  soundOn = !soundOn;
+  const cb = document.getElementById('soundToggle');
+  soundOn = cb ? cb.checked : !soundOn;
   lsSet('cs_sound_on', soundOn);
-  document.getElementById('soundBtn').textContent = soundOn ? '🔊' : '🔇';
+  const oldBtn = document.getElementById('soundBtn');
+  if(oldBtn) oldBtn.textContent = soundOn ? '🔊' : '🔇';
   if(soundOn) soundSelect();
+}
+function toggleVibration(){
+  const cb = document.getElementById('vibrationToggle');
+  vibrationOn = cb ? cb.checked : !vibrationOn;
+  lsSet('cs_vibration_on', vibrationOn);
+  if(vibrationOn) vibrate(12);
+}
+function toggleReduceMotion(){
+  const on = document.getElementById('reduceMotionToggle').checked;
+  lsSet('cs_reduce_motion', on);
+  document.documentElement.setAttribute('data-reduce-motion', on ? 'true' : '');
+}
+function toggleLeaderboardVisibility(){
+  const visible = document.getElementById('leaderboardVisibleToggle').checked;
+  lsSet('cs_leaderboard_visible', visible);
+  if(visible){
+    mirrorToClassLeaderboard();
+  } else if(CLOUD.mode === 'cloud' && CLOUD.uid){
+    fbDB.collection('leaderboard').doc(CLOUD.uid).delete().catch(e=>console.warn('Leaderboard hide failed', e));
+  }
 }
 
 /* ================= HAPTICS ================= */
 function vibrate(ms){
+  if(!vibrationOn) return;
   if(navigator.vibrate){ try{ navigator.vibrate(ms); }catch(e){} }
 }
 
@@ -2753,6 +2774,20 @@ function applyFontSize(size){
   lsSet('cs_fontsize', size);
   const btn = document.getElementById('fontBtn');
   if(btn) btn.textContent = size==='large' ? 'Aa+' : size==='medium' ? 'Aa·' : 'Aa';
+  const sBtn = document.getElementById('settingsFontBtn');
+  if(sBtn) sBtn.textContent = size==='large' ? 'Aa+ Large' : size==='medium' ? 'Aa· Medium' : 'Aa Normal';
+}
+
+/* Pulls every saved preference (sound, vibration, font size, subject, reduced
+   motion) out of whichever data source is active (cloud/guest) and applies it.
+   Called every time we know which student's data is loaded. */
+function applyLoadedPreferences(){
+  soundOn = lsGet('cs_sound_on', true);
+  vibrationOn = lsGet('cs_vibration_on', true);
+  applyFontSize(lsGet('cs_fontsize', 'normal'));
+  currentSubject = lsGet('cs_subject', 'cs');
+  document.documentElement.setAttribute('data-reduce-motion', lsGet('cs_reduce_motion', false) ? 'true' : '');
+  applyTheme(lsGet('cs_theme', 'light') === 'dark');
 }
 
 
@@ -2903,9 +2938,7 @@ function confirmProfile(){
 
 function finishLogin(){
   applyStudentUI();
-  soundOn = lsGet('cs_sound_on', true);
-  applyFontSize(lsGet('cs_fontsize', 'normal'));
-  currentSubject = lsGet('cs_subject', 'cs');
+  applyLoadedPreferences();
   launchConfetti();
   const logo = document.querySelector('.welcome-logo');
   if(logo){ logo.style.animation = 'none'; void logo.offsetWidth; logo.style.animation = 'starPop .5s ease'; }
@@ -2952,6 +2985,187 @@ async function switchUser(){
     document.getElementById('googleStep').classList.remove('hidden');
   }
   // if signed in with Google, onAuthStateChanged fires from signOut() and shows the Google step
+}
+
+/* ================= SETTINGS PANEL ================= */
+function openSettings(){
+  document.getElementById('soundToggle').checked = soundOn;
+  document.getElementById('vibrationToggle').checked = vibrationOn;
+  document.getElementById('reduceMotionToggle').checked = lsGet('cs_reduce_motion', false);
+  document.getElementById('leaderboardVisibleToggle').checked = lsGet('cs_leaderboard_visible', true);
+
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.getElementById('settingsThemeBtn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+
+  const fsize = lsGet('cs_fontsize', 'normal');
+  document.getElementById('settingsFontBtn').textContent =
+    fsize==='large' ? 'Aa+ Large' : fsize==='medium' ? 'Aa· Medium' : 'Aa Normal';
+
+  const info = document.getElementById('settingsAccountInfo');
+  const deleteRow = document.getElementById('deleteAccountRow');
+  if(CLOUD.mode === 'cloud' && googleUser){
+    info.innerHTML = `Signed in as <b>${escapeHtml(googleUser.email || googleUser.displayName || 'your Google account')}</b>`;
+    deleteRow.classList.remove('hidden');
+  } else if(isGuest){
+    info.innerHTML = `Guest mode <span style="color:var(--muted)">— sign in with Google to save progress permanently</span>`;
+    deleteRow.classList.add('hidden');
+  } else {
+    info.textContent = 'Not signed in';
+    deleteRow.classList.add('hidden');
+  }
+
+  document.getElementById('syncStatusLabel').textContent =
+    CLOUD.mode === 'cloud' ? 'Synced to your Google account' :
+    CLOUD.mode === 'guest' ? 'Saved on this device only (guest mode)' : '—';
+
+  document.getElementById('settingsScreen').classList.remove('hidden');
+}
+function closeSettings(){
+  document.getElementById('settingsScreen').classList.add('hidden');
+}
+function toggleThemeFromSettings(){
+  toggleTheme();
+}
+
+async function manualSync(){
+  if(CLOUD.mode !== 'cloud' || !CLOUD.uid){
+    showToast("You're not signed in, so there's nothing to sync.", 'info');
+    return;
+  }
+  showToast('Syncing…', 'info');
+  await loadCloudData(CLOUD.uid);
+  applyStudentUI();
+  refreshNavGamificationChips();
+  if(document.getElementById('dashboardScreen') && !document.getElementById('dashboardScreen').classList.contains('hidden')){
+    renderDashboard();
+  }
+  showToast('Synced!', 'success');
+}
+
+function exportMyData(){
+  if(CLOUD.mode === 'none'){
+    showToast('Sign in or continue as guest first.', 'info');
+    return;
+  }
+  const payload = JSON.stringify({ student, ...CLOUD.data }, null, 2);
+  const blob = new Blob([payload], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `my-progress-${(student.name||'student').replace(/\s+/g,'_')}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function confirmResetProgress(){
+  if(CLOUD.mode === 'none'){
+    showToast('Sign in or continue as guest first.', 'info');
+    return;
+  }
+  if(confirm('Reset all your XP, badges, and test history? Your name, class, and sign-in stay the same. This cannot be undone.')){
+    resetProgress();
+  }
+}
+function resetProgress(){
+  lsSet('cs_xp', 0);
+  lsSet('cs_streak', {count:0, last:null});
+  lsSet('cs_progress', {});
+  lsSet('cs_badges', []);
+  lsSet('cs_leaderboard', []);
+  lsSet('cs_wrong_pool', {});
+  mirrorToClassLeaderboard();
+  applyStudentUI();
+  refreshNavGamificationChips();
+  if(document.getElementById('dashboardScreen') && !document.getElementById('dashboardScreen').classList.contains('hidden')){
+    renderDashboard();
+  }
+  showToast('Your progress has been reset.', 'success');
+}
+
+/* ---- Delete account: removes Firestore data AND the Firebase Auth account itself ---- */
+function openDeleteAccountModal(){
+  if(CLOUD.mode !== 'cloud' || !CLOUD.uid){
+    showToast('Account deletion is only available when signed in with Google.', 'info');
+    return;
+  }
+  document.getElementById('deleteConfirmInput').value = '';
+  document.getElementById('deleteConfirmError').textContent = '';
+  document.getElementById('deleteAccountModal').classList.remove('hidden');
+  setTimeout(()=>document.getElementById('deleteConfirmInput')?.focus(), 50);
+}
+function closeDeleteAccountModal(){
+  document.getElementById('deleteAccountModal').classList.add('hidden');
+}
+async function deleteAccount(){
+  const typed = document.getElementById('deleteConfirmInput').value.trim();
+  if(typed.toUpperCase() !== 'DELETE'){
+    document.getElementById('deleteConfirmError').textContent = 'Please type DELETE to confirm.';
+    return;
+  }
+  const btn = document.getElementById('deleteAccountBtn');
+  const prevText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Deleting…';
+  try{
+    const uid = CLOUD.uid;
+    await fbDB.collection('students').doc(uid).delete();
+    await fbDB.collection('leaderboard').doc(uid).delete().catch(()=>{});
+    await fbAuth.currentUser.delete();
+
+    student = {name:'', cls:''};
+    isGuest = false;
+    CLOUD.uid = null; CLOUD.data = {}; CLOUD.mode = 'none';
+    closeDeleteAccountModal();
+    closeSettings();
+    applyStudentUI();
+    const gate = document.getElementById('welcomeScreen');
+    gate.style.transition = 'none';
+    gate.style.display = 'flex';
+    gate.style.opacity = '1';
+    gate.style.transform = 'scale(1)';
+    document.getElementById('classStep').classList.add('hidden');
+    document.getElementById('googleStep').classList.remove('hidden');
+    showToast('Your account and data have been deleted.', 'success');
+  }catch(e){
+    console.warn('Delete account failed', e);
+    if(e.code === 'auth/requires-recent-login'){
+      try{
+        const provider = new firebase.auth.GoogleAuthProvider();
+        await fbAuth.currentUser.reauthenticateWithPopup(provider);
+        btn.disabled = false;
+        btn.textContent = prevText;
+        deleteAccount(); // retry now that re-authentication succeeded
+        return;
+      }catch(reauthErr){
+        document.getElementById('deleteConfirmError').textContent = 'Please sign in again, then retry deleting your account.';
+      }
+    } else {
+      document.getElementById('deleteConfirmError').textContent = 'Something went wrong. Please try again.';
+    }
+  }finally{
+    btn.disabled = false;
+    btn.textContent = prevText;
+  }
+}
+
+/* ---- "Add to Home Screen" trigger, surfaced inside Settings ---- */
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e)=>{
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  const btn = document.getElementById('installAppBtn');
+  if(btn) btn.disabled = false;
+});
+async function triggerInstallPrompt(){
+  if(!deferredInstallPrompt){
+    showToast("Your browser doesn't support installing this as an app, or it's already installed.", 'info');
+    return;
+  }
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  const btn = document.getElementById('installAppBtn');
+  if(btn) btn.disabled = true;
 }
 
 function shuffle(arr){
@@ -3466,12 +3680,19 @@ styleTag.textContent = `@keyframes fall{to{transform:translateY(105vh) rotate(36
 document.head.appendChild(styleTag);
 
 /* Theme toggle */
-document.getElementById('themeBtn').onclick = function(){
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme')==='dark';
-  html.setAttribute('data-theme', isDark?'light':'dark');
-  this.textContent = isDark? '🌙 Dark':'☀️ Light';
-};
+function applyTheme(isDark){
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const oldBtn = document.getElementById('themeBtn');
+  if(oldBtn) oldBtn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+  const newBtn = document.getElementById('settingsThemeBtn');
+  if(newBtn) newBtn.textContent = isDark ? '☀️ Light' : '🌙 Dark';
+  lsSet('cs_theme', isDark ? 'dark' : 'light');
+}
+function toggleTheme(){
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  applyTheme(!isDark);
+}
+document.getElementById('themeBtn')?.addEventListener('click', toggleTheme);
 
 /* ================= 3D TILT — subject / chapter / featured cards =================
    Delegated on each .tilt-parent container so it keeps working after
@@ -3649,9 +3870,6 @@ if('serviceWorker' in navigator){
 
 /* ================= INITIAL SETUP ================= */
 (function initPreferences(){
-  soundOn = lsGet('cs_sound_on', true);
-  const soundBtn = document.getElementById('soundBtn');
-  if(soundBtn) soundBtn.textContent = soundOn ? '🔊' : '🔇';
-  applyFontSize(lsGet('cs_fontsize','normal'));
+  applyLoadedPreferences();
   refreshNavGamificationChips();
 })();

@@ -108,10 +108,7 @@
         <span id="studentChipText"></span>
         <button class="edit-icon-btn" onclick="editProfile()" title="Edit your name/class">✎</button>
       </div>
-      <button class="nav-icon-btn" onclick="confirmLogout()" title="Log out of your Google account">🚪 Logout</button>
-      <button class="nav-icon-btn" id="fontBtn" onclick="cycleFontSize()" title="Text size">Aa</button>
-      <button class="nav-icon-btn" id="soundBtn" onclick="toggleSound()" title="Sound">🔊</button>
-      <button class="theme-toggle" id="themeBtn">🌙 Dark</button>
+      <button class="nav-icon-btn" onclick="openSettings()" title="Settings">⚙️ Settings</button>
     </div>
   </div>
 </nav>
@@ -445,6 +442,113 @@
 
     <div class="dash-section-title">📈 Your Best Attempts</div>
     <div class="lb-table" id="leaderboardTable"></div>
+  </div>
+</div>
+
+<!-- Settings panel -->
+<div id="settingsScreen" class="admin-overlay hidden">
+  <div class="admin-header">
+    <h2>⚙️ Settings</h2>
+    <div class="admin-header-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeSettings()">✕ Close</button>
+    </div>
+  </div>
+  <div class="settings-wrap">
+
+    <div class="settings-section">
+      <div class="settings-section-title">🎨 Appearance</div>
+      <div class="settings-row">
+        <div class="settings-row-label">Theme<span class="settings-row-sub">Switch between light and dark mode</span></div>
+        <button class="btn btn-outline btn-sm" id="settingsThemeBtn" onclick="toggleThemeFromSettings()">🌙 Dark</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Font size<span class="settings-row-sub">Make question text bigger or smaller</span></div>
+        <button class="btn btn-outline btn-sm" id="settingsFontBtn" onclick="cycleFontSize()">Aa Normal</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Reduce animations<span class="settings-row-sub">Turn off confetti &amp; motion effects</span></div>
+        <label class="switch"><input type="checkbox" id="reduceMotionToggle" onchange="toggleReduceMotion()"><span class="slider"></span></label>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">🔊 Audio &amp; Feedback</div>
+      <div class="settings-row">
+        <div class="settings-row-label">Sound effects<span class="settings-row-sub">Answer chimes &amp; button sounds</span></div>
+        <label class="switch"><input type="checkbox" id="soundToggle" onchange="toggleSound()"><span class="slider"></span></label>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Vibration<span class="settings-row-sub">Haptic buzz on answers (mobile only)</span></div>
+        <label class="switch"><input type="checkbox" id="vibrationToggle" onchange="toggleVibration()"><span class="slider"></span></label>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">👤 Account</div>
+      <div class="settings-row"><div class="settings-row-label" id="settingsAccountInfo">Not signed in</div></div>
+      <div class="settings-row">
+        <div class="settings-row-label">Edit name / class</div>
+        <button class="btn btn-outline btn-sm" onclick="closeSettings(); editProfile();">Edit</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Show me on the Class Leaderboard<span class="settings-row-sub">Turn off to hide your name from classmates</span></div>
+        <label class="switch"><input type="checkbox" id="leaderboardVisibleToggle" onchange="toggleLeaderboardVisibility()"><span class="slider"></span></label>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Sign out</div>
+        <button class="btn btn-outline btn-sm" onclick="closeSettings(); confirmLogout();">🚪 Logout</button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">💾 Data &amp; Privacy</div>
+      <div class="settings-row">
+        <div class="settings-row-label">Sync status<span class="settings-row-sub" id="syncStatusLabel">—</span></div>
+        <button class="btn btn-outline btn-sm" onclick="manualSync()">🔄 Sync now</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Download my data<span class="settings-row-sub">Export your XP, badges &amp; test history as a file</span></div>
+        <button class="btn btn-outline btn-sm" onclick="exportMyData()">⬇ Export</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Reset my progress<span class="settings-row-sub">Clears XP, badges &amp; history — keeps your account</span></div>
+        <button class="btn btn-outline btn-sm danger-btn" onclick="confirmResetProgress()">Reset</button>
+      </div>
+      <div class="settings-row" id="deleteAccountRow">
+        <div class="settings-row-label">Delete my account<span class="settings-row-sub">Permanently deletes your account &amp; all saved data</span></div>
+        <button class="btn btn-outline btn-sm danger-btn" onclick="openDeleteAccountModal()">Delete Account</button>
+      </div>
+    </div>
+
+    <div class="settings-section">
+      <div class="settings-section-title">ℹ️ About &amp; Help</div>
+      <div class="settings-row"><div class="settings-row-label">App version<span class="settings-row-sub">v1.0 • Updated July 2026</span></div></div>
+      <div class="settings-row">
+        <div class="settings-row-label">Install this app<span class="settings-row-sub">Add to your home screen for quick access</span></div>
+        <button class="btn btn-outline btn-sm" id="installAppBtn" onclick="triggerInstallPrompt()" disabled>Install</button>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Feedback / report a problem</div>
+        <a class="btn btn-outline btn-sm" href="mailto:?subject=Feedback%20on%20Exam%20Practice%20Portal" style="text-decoration:none;display:inline-block">✉ Email us</a>
+      </div>
+      <div class="settings-row">
+        <div class="settings-row-label">Teacher Access</div>
+        <button class="btn btn-outline btn-sm" onclick="closeSettings(); openAdminLogin();">Open</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Delete account confirmation modal -->
+<div id="deleteAccountModal" class="admin-modal hidden">
+  <div class="admin-modal-box">
+    <button class="admin-close" onclick="closeDeleteAccountModal()">✕</button>
+    <h3>⚠️ Delete Account</h3>
+    <p class="admin-sub">This permanently deletes your saved profile, XP, badges, and test history from our servers. This cannot be undone.</p>
+    <input type="text" id="deleteConfirmInput" class="admin-input" placeholder="Type DELETE to confirm">
+    <div class="admin-error" id="deleteConfirmError"></div>
+    <button class="btn danger-btn" id="deleteAccountBtn" onclick="deleteAccount()" style="width:100%">Delete My Account</button>
   </div>
 </div>
 
