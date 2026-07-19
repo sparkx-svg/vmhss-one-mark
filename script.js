@@ -739,31 +739,31 @@ const CHAPTERS_CA = [
 
 /* ================= MATHS QUESTION BANK (12th Std, Book Back 1 Mark PDF) ================= */
 const MU1_MATRICES = [
-{q:"If |adj(adj A)| = |A|⁹, then the order of the square matrix A is",options:["3","4","2","5"],correct:1,exp:"|adj(adj A)| = |A|^((n-1)²) for an n×n matrix; setting (n-1)²=9 gives n=4."},
-{q:"If A is a 3×3 non-singular matrix such that AAᵀ = AᵀA and B = A⁻¹Aᵀ, then BBᵀ =",options:["A","B","I₃","Bᵀ"],correct:2,exp:"Using AAᵀ=AᵀA, BBᵀ = A⁻¹AᵀA(A⁻¹)ᵀ simplifies to the identity matrix I₃."},
-{q:"If A = [3,5;1,2], B = adj A and C = 3A, then |adj B| / |C| =",options:["1/3","1/9","1/4","1"],correct:1,exp:"For a 2×2 matrix, |adjA|=|A| and |adj(adjA)|=|A|; with |A|=1 here, |adjB|/|C| = 1/|3A| = 1/9."},
-{q:"If A[1,-2;1,4] = [6,0;0,6], then A =",options:["[1,-2;1,4]","[1,2;-1,4]","[4,2;-1,1]","[4,-1;2,1]"],correct:2,exp:"From AM=6I, A = 6M⁻¹; computing M⁻¹ for M=[1,-2;1,4] gives A=[4,2;-1,1]."},
-{q:"If A = [7,3;4,2], then 9I₂ - A =",options:["A⁻¹","A⁻¹/2","3A⁻¹","2A⁻¹"],correct:3,exp:"Since A⁻¹ = adjA/|A| and |A|=2 here, 9I-A works out to exactly 2A⁻¹."},
-{q:"If A = [2,0;1,5] and B = [1,4;2,0], then |adj(AB)| =",options:["-40","-80","-60","-20"],correct:1,exp:"For a 2×2 matrix, |adj(AB)| = |AB| = |A||B| = 10×(-8) = -80."},
-{q:"If P = [1,x,0;1,3,0;2,4,-2] is the adjoint of a 3×3 matrix A and |A| = 4, then x is",options:["15","12","14","11"],correct:3,exp:"Expanding |P| along the third column and equating it to |adjA|=|A|²=16 gives x=11."},
-{q:"If A = [3,1,-1;2,-2,0;1,2,-1] and A⁻¹ = [a11,a12,a13;a21,a22,a23;a31,a32,a33], then the value of a23 is",options:["0","-2","-3","-1"],correct:3,exp:"The (2,3) entry of A⁻¹ equals the cofactor C₃₂ divided by |A|; computing both gives -1."},
-{q:"If A, B and C are invertible matrices of some order, then which one of the following is NOT true?",options:["adj A = |A| A⁻¹","adj (AB) = (adj A)(adj B)","det A⁻¹ = (det A)⁻¹","(ABC)⁻¹ = C⁻¹B⁻¹A⁻¹"],correct:1,exp:"The correct identity is adj(AB) = (adjB)(adjA) — reversed order — so the given statement adj(AB)=(adjA)(adjB) is false."},
-{q:"If (AB)⁻¹ = [12,-17;-19,27] and A⁻¹ = [1,-1;-2,3], then B⁻¹ =",options:["[2,-5;-3,8]","[8,5;3,2]","[3,1;2,1]","[8,-5;-3,2]"],correct:0,exp:"Using (AB)⁻¹=B⁻¹A⁻¹, recover A from A⁻¹, then B⁻¹=(AB)⁻¹·A, which gives [2,-5;-3,8]."},
-{q:"If AᵀA⁻¹ is symmetric, then A² =",options:["A⁻¹","(Aᵀ)²","Aᵀ","(A⁻¹)²"],correct:1,exp:"Expanding the symmetry condition (AᵀA⁻¹)ᵀ=AᵀA⁻¹ and simplifying leads to A²=(Aᵀ)²."},
-{q:"If A is a non-singular matrix such that A⁻¹ = [5,3;-2,-1], then (Aᵀ)⁻¹ =",options:["[-5,3;2,1]","[5,3;-2,-1]","[-1,-3;2,5]","[5,-2;3,-1]"],correct:3,exp:"Using the identity (Aᵀ)⁻¹ = (A⁻¹)ᵀ, simply transpose the given A⁻¹."},
-{q:"If A = [3/5,4/5;x,3/5] and Aᵀ = A⁻¹, then the value of x is",options:["-4/5","-3/5","3/5","-4/5 (again)"],correct:0,exp:"Aᵀ=A⁻¹ means A is orthogonal (AAᵀ=I); equating entries of AAᵀ to I gives x=-4/5."},
-{q:"If A = [1,tan(θ/2);-tan(θ/2),1] and AB = I₂, then B =",options:["cos²(θ/2)·A","cos²(θ/2)·Aᵀ","(cos 2θ)·I","sin²(θ/2)·A"],correct:1,exp:"B=A⁻¹=adjA/|A|; since |A|=sec²(θ/2) here, B simplifies to cos²(θ/2)·Aᵀ."},
-{q:"If A = [cosθ,sinθ;-sinθ,cosθ] and A(adj A) = [k,0;0,k], then k =",options:["0","sinθ","cosθ","1"],correct:3,exp:"By the identity A(adjA)=|A|I, and |A|=cos²θ+sin²θ=1 here, so k=1."},
-{q:"If A = [2,3;5,-2] is such that A⁻¹ = λA, then λ is",options:["17","14","19","21"],correct:2,exp:"Since A⁻¹=adjA/|A| and |A|=-19 for this matrix, A⁻¹=-(1/19)A, so the key value is 19."},
-{q:"If adj A = [2,3;4,-1] and adj B = [1,-2;-3,1], then adj(AB) is",options:["[-7,-1;7,-9]","[-6,5;-2,-10]","[-7,7;-1,-9]","[-6,-2;5,-10]"],correct:1,exp:"Using adj(AB) = (adjB)(adjA), multiplying the given adjoints in reversed order gives [-6,5;-2,-10]."},
+{q:"If |adj(adj A)| = |A|⁹, then the order of the square matrix A is",options:["3","4","2","5"],correct:1},
+{q:"If A is a 3×3 non-singular matrix such that AAᵀ = AᵀA and B = A⁻¹Aᵀ, then BBᵀ =",options:["A","B","I₃","Bᵀ"],correct:2},
+{q:"If A = [3,5;1,2], B = adj A and C = 3A, then |adj B| / |C| =",options:["1/3","1/9","1/4","1"],correct:1},
+{q:"If A[1,-2;1,4] = [6,0;0,6], then A =",options:["[1,-2;1,4]","[1,2;-1,4]","[4,2;-1,1]","[4,-1;2,1]"],correct:2},
+{q:"If A = [7,3;4,2], then 9I₂ - A =",options:["A⁻¹","A⁻¹/2","3A⁻¹","2A⁻¹"],correct:3},
+{q:"If A = [2,0;1,5] and B = [1,4;2,0], then |adj(AB)| =",options:["-40","-80","-60","-20"],correct:1},
+{q:"If P = [1,x,0;1,3,0;2,4,-2] is the adjoint of a 3×3 matrix A and |A| = 4, then x is",options:["15","12","14","11"],correct:3},
+{q:"If A = [3,1,-1;2,-2,0;1,2,-1] and A⁻¹ = [a11,a12,a13;a21,a22,a23;a31,a32,a33], then the value of a23 is",options:["0","-2","-3","-1"],correct:3},
+{q:"If A, B and C are invertible matrices of some order, then which one of the following is NOT true?",options:["adj A = |A| A⁻¹","adj (AB) = (adj A)(adj B)","det A⁻¹ = (det A)⁻¹","(ABC)⁻¹ = C⁻¹B⁻¹A⁻¹"],correct:1},
+{q:"If (AB)⁻¹ = [12,-17;-19,27] and A⁻¹ = [1,-1;-2,3], then B⁻¹ =",options:["[2,-5;-3,8]","[8,5;3,2]","[3,1;2,1]","[8,-5;-3,2]"],correct:0},
+{q:"If AᵀA⁻¹ is symmetric, then A² =",options:["A⁻¹","(Aᵀ)²","Aᵀ","(A⁻¹)²"],correct:1},
+{q:"If A is a non-singular matrix such that A⁻¹ = [5,3;-2,-1], then (Aᵀ)⁻¹ =",options:["[-5,3;2,1]","[5,3;-2,-1]","[-1,-3;2,5]","[5,-2;3,-1]"],correct:3},
+{q:"If A = [3/5,4/5;x,3/5] and Aᵀ = A⁻¹, then the value of x is",options:["-4/5","-3/5","3/5","-4/5 (again)"],correct:0},
+{q:"If A = [1,tan(θ/2);-tan(θ/2),1] and AB = I₂, then B =",options:["cos²(θ/2)·A","cos²(θ/2)·Aᵀ","(cos 2θ)·I","sin²(θ/2)·A"],correct:1},
+{q:"If A = [cosθ,sinθ;-sinθ,cosθ] and A(adj A) = [k,0;0,k], then k =",options:["0","sinθ","cosθ","1"],correct:3},
+{q:"If A = [2,3;5,-2] is such that A⁻¹ = λA, then λ is",options:["17","14","19","21"],correct:2},
+{q:"If adj A = [2,3;4,-1] and adj B = [1,-2;-3,1], then adj(AB) is",options:["[-7,-1;7,-9]","[-6,5;-2,-10]","[-7,7;-1,-9]","[-6,-2;5,-10]"],correct:1},
 {q:"The rank of the matrix formed by rows (1,2),(2,4),(-1,-2),(3,4),(6,8),(-3,-4) is",options:["1","2","4","3"],correct:0},
-{q:"If xᵃyᵇ = eᵐ, xᶜyᵈ = eⁿ, with Δ1=|m,b;n,d|, Δ2=|a,m;c,n|, Δ3=|a,b;c,d|, then x and y are respectively",options:["e^(Δ1/Δ2), e^(Δ3/Δ1)","log(Δ1/Δ3), log(Δ2/Δ3)","log(Δ2/Δ1), log(Δ3/Δ1)","e^(Δ1/Δ3), e^(Δ2/Δ3)"],correct:3,exp:"Taking logs turns the system into a linear system in log x and log y; solving by Cramer's rule with determinants Δ1,Δ2,Δ3 gives x=e^(Δ1/Δ3), y=e^(Δ2/Δ3)."},
-{q:"Which of the following is/are correct? (i) Adjoint of a symmetric matrix is also symmetric. (ii) Adjoint of a diagonal matrix is also diagonal. (iii) adj(λA) = λⁿ·adj(A). (iv) A(adj A) = (adj A)A = |A|I",options:["Only (i)","(ii) and (iii)","(iii) and (iv)","(i), (ii) and (iv)"],correct:3,exp:"Adjoint of symmetric/diagonal matrices are themselves symmetric/diagonal, and A(adjA)=(adjA)A=|A|I always holds, but adj(λA)=λⁿ⁻¹adjA (not λⁿ), so only (i), (ii) and (iv) are correct."},
-{q:"If ρ(A) = ρ([A|B]), then the system AX = B of linear equations is",options:["consistent and has a unique solution","consistent","consistent and has infinitely many solutions","inconsistent"],correct:1,exp:"Equal rank of the coefficient and augmented matrices guarantees only that the system is consistent — not necessarily a unique solution."},
-{q:"If θ ≠ 0 and the system x + (sinθ)y - (cosθ)z = 0, (cosθ)x - y + z = 0, (sinθ)x + y - z = 0 has a non-trivial solution, then θ is",options:["2π/3","3π/4","5π/6","π/4"],correct:3,exp:"A homogeneous system has a non-trivial solution only when its coefficient determinant is zero; solving this condition gives θ=π/4."},
-{q:"The augmented matrix of a linear system is [1,2,7;0,1,λ+3;0,0,λ-7,μ+5]. The system has infinitely many solutions if",options:["λ=7, μ≠-5","λ=-7, μ=5","λ≠7, μ≠-5","λ=7, μ=-5"],correct:3,exp:"For infinitely many solutions the last row of the row-reduced augmented matrix must vanish entirely, requiring λ=7 and μ=-5."},
-{q:"Let A = [2,-1,1;-1,2,-1;1,-1,2] and 4B = [3,1,-1;1,3,x;-1,1,3]. If B is the inverse of A, then the value of x is",options:["2","4","3","1"],correct:3,exp:"Since B=A⁻¹, A(4B)=4I; setting the (2,3) entry of the product to zero gives x=1."},
-{q:"If A = [3,-3,4;2,-3,4;0,-1,1], then adj(adj A) is",options:["[3,-3,4;2,-3,4;0,-1,1]","[6,-6,8;4,-6,8;0,-2,2]","[-3,3,-4;-2,3,-4;0,1,-1]","[3,-3,4;0,-1,1;2,-3,4]"],correct:0,exp:"For a 3×3 matrix, adj(adjA) = |A|^(n-2)·A = |A|·A; since |A|=1 here, adj(adjA) equals A itself."}
+{q:"If xᵃyᵇ = eᵐ, xᶜyᵈ = eⁿ, with Δ1=|m,b;n,d|, Δ2=|a,m;c,n|, Δ3=|a,b;c,d|, then x and y are respectively",options:["e^(Δ1/Δ2), e^(Δ3/Δ1)","log(Δ1/Δ3), log(Δ2/Δ3)","log(Δ2/Δ1), log(Δ3/Δ1)","e^(Δ1/Δ3), e^(Δ2/Δ3)"],correct:3},
+{q:"Which of the following is/are correct? (i) Adjoint of a symmetric matrix is also symmetric. (ii) Adjoint of a diagonal matrix is also diagonal. (iii) adj(λA) = λⁿ·adj(A). (iv) A(adj A) = (adj A)A = |A|I",options:["Only (i)","(ii) and (iii)","(iii) and (iv)","(i), (ii) and (iv)"],correct:3},
+{q:"If ρ(A) = ρ([A|B]), then the system AX = B of linear equations is",options:["consistent and has a unique solution","consistent","consistent and has infinitely many solutions","inconsistent"],correct:1},
+{q:"If θ ≠ 0 and the system x + (sinθ)y - (cosθ)z = 0, (cosθ)x - y + z = 0, (sinθ)x + y - z = 0 has a non-trivial solution, then θ is",options:["2π/3","3π/4","5π/6","π/4"],correct:3},
+{q:"The augmented matrix of a linear system is [1,2,7;0,1,λ+3;0,0,λ-7,μ+5]. The system has infinitely many solutions if",options:["λ=7, μ≠-5","λ=-7, μ=5","λ≠7, μ≠-5","λ=7, μ=-5"],correct:3},
+{q:"Let A = [2,-1,1;-1,2,-1;1,-1,2] and 4B = [3,1,-1;1,3,x;-1,1,3]. If B is the inverse of A, then the value of x is",options:["2","4","3","1"],correct:3},
+{q:"If A = [3,-3,4;2,-3,4;0,-1,1], then adj(adj A) is",options:["[3,-3,4;2,-3,4;0,-1,1]","[6,-6,8;4,-6,8;0,-2,2]","[-3,3,-4;-2,3,-4;0,1,-1]","[3,-3,4;0,-1,1;2,-3,4]"],correct:0}
 ];
 
 const MU2_COMPLEX = [
@@ -2269,6 +2269,296 @@ const CHAPTERS_COMMERCE = [
   {id:728, name:"Company Secretary", icon:"🗂️", questions:COM28_COMPANY_SECRETARY, additionalQuestions:[]}
 ];
 
+const ECO01_INTRODUCTION_TO_MACRO_ECONOMICS = [
+{q:"The branches of the subject Economics is",options:["Wealth and welfare", "production and consumption", "Demand and supply", "micro and macro"],correct:3,exp:"Economics is broadly divided into two branches: microeconomics and macroeconomics."},
+{q:"Who coined the word 'Macro'?",options:["Adam Smith", "J M Keynes", "Ragnar Frisch", "Karl Marx"],correct:2,exp:"The term 'Macro' was coined by the Norwegian economist Ragnar Frisch."},
+{q:"Who is regarded as Father of Modern Macro Economics?",options:["Adam Smith", "J M Keynes", "Ragnar Frisch", "Karl Marx"],correct:1,exp:"J.M. Keynes is regarded as the Father of Modern Macroeconomics for his General Theory."},
+{q:"Identify the other name for Macro Economics.",options:["Price Theory", "Income Theory", "Market Theory", "Micro Theory"],correct:1,exp:"Macroeconomics is also called Income Theory since it studies national income and aggregates."},
+{q:"Macro economics is a study of ___.",options:["Individuals", "Firms", "A Nation", "Aggregates"],correct:3,exp:"Macroeconomics studies the economy as a whole through aggregates like national income and employment."},
+{q:"Indicate the contribution of J M Keynes to economics.",options:["Wealth of Nations", "General Theory", "Capital", "Public Finance"],correct:1,exp:"Keynes's major contribution was 'The General Theory of Employment, Interest and Money'."},
+{q:"A steady increase in general price level is termed as ___.",options:["Wholesale price index", "Business Cycle", "Inflation", "National Income"],correct:2,exp:"A sustained rise in the general price level of an economy is called inflation."},
+{q:"Identify the necessity of Economic policies.",options:["To solve the basic problems", "To overcome the obstacles", "To achieve growth", "All the above"],correct:3,exp:"Economic policies are necessary to solve basic problems, overcome obstacles, and achieve growth — all of these."},
+{q:"Indicate the fundamental economic activities of an economy.",options:["Production and Distribution", "Production and Exchange", "Production and Consumption", "Production and Marketing"],correct:2,exp:"Production and consumption are the two fundamental economic activities of any economy."},
+{q:"An economy consists of",options:["Consumption sector", "Production sector", "Government sector", "All the above"],correct:3,exp:"An economy is made up of consumption, production, and government sectors together."},
+{q:"Identify the economic system where only private ownership of production exists.",options:["Capitalistic Economy", "Socialistic Economy", "Globalistic Economy", "Mixed Economy"],correct:0,exp:"In a Capitalistic economy, the means of production are privately owned."},
+{q:"Economic system representing equality in distribution is ___.",options:["Capitalism", "Globalism", "Mixedism", "Socialism"],correct:3,exp:"Socialism emphasizes equality in the distribution of income and resources."},
+{q:"Who is referred as 'Father of Capitalism'?",options:["Adam Smith", "Karl Marx", "Thackeray", "J M Keynes"],correct:0,exp:"Adam Smith is known as the Father of Capitalism for his work on free-market economics."},
+{q:"The country following Capitalism is ___.",options:["Russia", "America", "India", "China"],correct:1,exp:"America is a classic example of a capitalist economy."},
+{q:"Identify The Father of Socialism.",options:["J M Keynes", "Karl Marx", "Adam Smith", "Samuelson"],correct:1,exp:"Karl Marx is regarded as the Father of Socialism."},
+{q:"An economic system where the economic activities of a nation are done both by the private and public together is termed as ___.",options:["Capitalistic Economy", "Socialistic Economy", "Globalisic Economy", "Mixed Economy"],correct:3,exp:"A Mixed economy has both private and public sectors operating together."},
+{q:"Quantity of a commodity accumulated at a point of time is termed as ___.",options:["Production", "Stock", "Variable", "Flow"],correct:1,exp:"A stock variable is measured at a specific point in time, unlike a flow which is measured over a period."},
+{q:"Identify the flow variable.",options:["Money supply", "Assets", "Income", "Foreign exchange reserves"],correct:2,exp:"Income is a flow variable since it is measured over a period of time (e.g., per year)."},
+{q:"Identify the sectors of a Two Sector Model.",options:["Households and Firms", "Private and Public", "Internal and External", "Firms and Government"],correct:0,exp:"The basic Two Sector Model of circular flow consists of Households and Firms."},
+{q:"The Circular Flow Model that represents an open Economy.",options:["Two Sector Model", "Three Sector Model", "Four Sector Model", "All the above"],correct:2,exp:"The Four Sector Model, which includes the foreign sector, represents an open economy."},
+];
+
+const ECO02_NATIONAL_INCOME = [
+{q:"Net National product at factor cost is also known as",options:["National Income", "Domestic Income", "Per capita Income", "Salary"],correct:0,exp:"NNP at factor cost is the standard definition of National Income."},
+{q:"Primary sector is …………………..",options:["Industry", "Trade", "Agriculture", "Construction"],correct:2,exp:"The primary sector covers agriculture and other activities that extract raw materials from nature."},
+{q:"National income is measured by using .............. methods.",options:["Two", "Three", "Five", "Four"],correct:1,exp:"National income is measured using three methods: product, income, and expenditure methods."},
+{q:"Income method is measured by summing up of all forms of ……………",options:["Revenue", "Taxes", "expenditure", "Income"],correct:3,exp:"The income method sums up all forms of income earned by factors of production."},
+{q:"Which is the largest figure?",options:["Disposable income", "Personal Income", "NNP", "GNP"],correct:3,exp:"GNP is the largest among these figures since it includes net factor income from abroad before other deductions."},
+{q:"Expenditure method is used to estimate national income in ……………..",options:["Construction sector", "Agricultural Sector", "Service sector", "Banking sector"],correct:0,exp:"The expenditure method is commonly used to estimate income generated in the construction sector."},
+{q:"Tertiary sector is also called as..............sector",options:["Service", "Income", "Industrial", "Production"],correct:0,exp:"The tertiary sector is also known as the service sector."},
+{q:"National income is a measure of the .............performance of an economy.",options:["Industrial", "Agricultural", "Economic", "Consumption"],correct:2,exp:"National income reflects the overall economic performance of a country."},
+{q:"Per capita income is obtained by dividing the National income by …………",options:["Production", "Population of a country", "Expenditure", "GNP"],correct:1,exp:"Per capita income = National Income ÷ Population of the country."},
+{q:"GNP =............. + Net factor income from abroad.",options:["NNP", "NDP", "GDP", "Personal income"],correct:2,exp:"GNP = GDP + Net factor income from abroad."},
+{q:"NNP stands for ……….",options:["Net National Product", "National Net product", "National Net Provident", "Net National Provident"],correct:0,exp:"NNP stands for Net National Product."},
+{q:".is deducted from gross value to get the net value.",options:["Income", "Depreciation", "Expenditure", "Value of final goods"],correct:1,exp:"Depreciation is deducted from gross value to arrive at the net value."},
+{q:"The financial year in India is ……",options:["April 1 to March 31", "March 1 to April 30", "March 1 to March 16", "January 1 to December 31"],correct:0,exp:"India's financial year runs from April 1st to March 31st."},
+{q:"When net factor income from abroad is deducted from NNP, the net value is …….",options:["Gross National Product", "Disposable Income", "Net Domestic Product", "Personal Income"],correct:2,exp:"NNP minus net factor income from abroad gives Net Domestic Product (NDP)."},
+{q:"The value of NNP at production point is called ……",options:["NNP at factor cost", "NNP at market cost", "GNP at factor cost", "Per capita income"],correct:0,exp:"NNP at factor cost reflects the value at the point of production, excluding indirect taxes."},
+{q:"The average income of the country is ….",options:["Personal Income", "Per capita income", "Inflation Rate", "Disposal Income"],correct:1,exp:"Per capita income represents the average income of a country's population."},
+{q:"The value of national income adjusted for inflation is called ….",options:["Inflation Rate", "Disposal Income", "GNP", "Real national income"],correct:3,exp:"Real national income is national income adjusted for inflation."},
+{q:"Which is a flow concept ?",options:["Number of shirts", "Total wealth", "Monthly income", "Money supply"],correct:2,exp:"Monthly income is a flow concept since it is measured over a period of time."},
+{q:"PQLI is the indicator of ………………",options:["Economic growth", "Economic welfare", "Economic progress", "Economic development"],correct:1,exp:"The Physical Quality of Life Index (PQLI) is an indicator of economic welfare."},
+{q:"The largest proportion of national income comes from …….",options:["Private sector", "Local sector", "Public sector", "None of the above"],correct:0,exp:"The private sector contributes the largest proportion to national income."},
+];
+
+const ECO03_THEORIES_OF_EMPLOYMENT_AND_INCOME = [
+{q:"Every able bodied person who is willing to work at the prevailing wage rate is employed called as ……….",options:["Full employment", "Under employment", "Unemployment", "Employment opportunity"],correct:0,exp:"Full employment exists when every able-bodied person willing to work at the prevailing wage is employed."},
+{q:"Structural unemployment is a feature in a ………..",options:["Static society", "Socialist society", "Dynamic society", "Mixed economy"],correct:2,exp:"Structural unemployment arises due to changes in a dynamic, evolving society/economy."},
+{q:"In disguised unemployment, the marginal productivity of labour is …..",options:["Zero", "One", "Two", "Positive"],correct:0,exp:"In disguised unemployment, the marginal productivity of the excess labour is zero."},
+{q:"The main concention of the Classical Economic Theory is ……..",options:["Under employment", "Economy is always in the state of equilibrium", "Demand creates its supply", "Imperfect competition"],correct:1,exp:"Classical theory holds that the economy is always self-adjusting toward full-employment equilibrium."},
+{q:"J.B. Say is a …………………….",options:["Neo Classical Economist", "Classical Economist", "Modern Economist", "New Economist"],correct:1,exp:"J.B. Say, known for Say's Law, is a Classical economist."},
+{q:"According to Keynes, which type of unemployment prevails in capitalist economy ?",options:["Full employment", "Voluntary unemployment", "Involuntary unemployment", "Under employment"],correct:3,exp:"As per the official key, Keynes associates capitalist economies with under employment."},
+{q:"The core of the classical theory of employment is …………",options:["Law of Diminishing Return", "Law of Demand", "Law of Markets", "Law of Consumption"],correct:2,exp:"Say's Law of Markets ('supply creates its own demand') is the core of classical employment theory."},
+{q:"Keynes attributes unemployment to …………..",options:["A lack of effective supply", "A lack of effective demand", "A lack of both", "None of the above"],correct:1,exp:"Keynes attributed unemployment mainly to a lack of effective demand in the economy."},
+{q:"Flexibility brings equality between saving and investment.",options:["Demand", "Supply", "Capital", "Interest"],correct:3,exp:"According to classical theory, flexibility in the rate of interest equates saving and investment."},
+{q:"theory is a turning point in the development of modern economic theory.",options:["Keynes'", "Say's", "Classical", "Employment"],correct:0,exp:"Keynes' theory (The General Theory) marked a turning point in modern economic thought."},
+{q:"The basic concept used in Keynes Theory of Employment and Income is…………….",options:["Aggregate demand", "Aggregate supply", "Effective demand", "Marginal Propensity Consume"],correct:2,exp:"Effective demand — the point where aggregate demand equals aggregate supply — is central to Keynes' theory."},
+{q:"The component of aggregate demand is ………….",options:["Personal demand", "Government expenditure", "Only export", "Only import"],correct:1,exp:"Government expenditure is one of the key components of aggregate demand."},
+{q:"Aggregate supply is equal to ………….",options:["C + I + G", "C + S + G + (x-m)", "C + S + T + (x-m)", "C + S + T + Rf"],correct:3,exp:"As per the textbook identity used here, aggregate supply equals C + S + T + Rf."},
+{q:"Keynes theory pursues to replace laissez faire by …………",options:["No government intervention", "Maximum intervention", "State intervention in certain situation", "Private sector intervention"],correct:2,exp:"Keynes advocated state intervention in certain situations to replace pure laissez-faire."},
+{q:"In Keynes theory of employment and income, .................. is the basic cause of economic depression.",options:["Less production", "More demand", "Inelastic supply", "Less aggregate demand in relation to productive capacity."],correct:3,exp:"Keynes held that insufficient aggregate demand relative to productive capacity causes depressions."},
+{q:"Classical theory advocates ……",options:["Balanced budget", "Unbalanced budget", "Surplus budget", "Deficit budget"],correct:0,exp:"Classical economists advocated a balanced government budget."},
+{q:"Keynes theory emphasized on …… equilibrium.",options:["Very short run", "Short run", "Very long run", "Long run"],correct:1,exp:"Keynes' theory focuses on short-run equilibrium of the economy."},
+{q:"According to classical theory, rate of interest is a reward for ……",options:["Investment", "Demand", "Capital", "Saving"],correct:3,exp:"Classical theory views the rate of interest as a reward for saving (abstaining from consumption)."},
+{q:"In Keynes theory , the demand for and supply of money are determined by ….",options:["Rate of interest", "Effective demand", "Aggregate demand", "Aggregate supply"],correct:0,exp:"In Keynesian theory, the demand for and supply of money are determined by the rate of interest."},
+{q:"Say’s law stressed the operation of..................in the economy.",options:["Induced price mechanism", "Automatic price mechanism", "Induced demand", "Induced investment"],correct:1,exp:"Say's Law stressed that an automatic price mechanism keeps the economy at equilibrium."},
+];
+
+const ECO04_CONSUMPTION_AND_INVESTMENT_FUNCTIONS = [
+{q:"The average propensity to consume is measured by",options:["C/Y", "CxY", "Y/C", "C+Y"],correct:0,exp:"Average Propensity to Consume (APC) = Total Consumption (C) ÷ Total Income (Y)."},
+{q:"An increase in the marginal propensity to consume will:",options:["Lead to consumption function becoming steeper", "Shift the consumption function upwards", "Shift the consumption function downwards", "Shift savings function upwards"],correct:0,exp:"A higher MPC increases the slope of the consumption function, making it steeper."},
+{q:"If the Keynesian consumption function is C=10+0.8 Y then, if disposable income is Rs 1000, what is amount of total consumption?",options:["Rs. 0.8", "Rs. 800", "Rs. 810", "Rs. 0.81"],correct:2,exp:"C = 10 + 0.8(1000) = 10 + 800 = Rs. 810."},
+{q:"If the Keynesian consumption function is C=10+0.8Y then, when disposable income is Rs 100, what is the marginal propensity to consume?",options:["Rs. 0.8", "Rs. 800", "Rs. 810", "Rs. 0.81"],correct:0,exp:"The MPC is the coefficient of Y (0.8) and stays constant regardless of the income level."},
+{q:"If the Keynesian consumption function is C=10+0.8 Y then, and disposable income is 100, what is the average propensity to consume?",options:["Rs. 0.8", "Rs. 800", "Rs. 810", "Rs. 0.9"],correct:3,exp:"C = 10 + 0.8(100) = 90. APC = C/Y = 90/100 = 0.9."},
+{q:"As national income increases",options:["The APC falls and gets nearer in value to the MPC", "The APC increases and diverges in value from the MPC", "The APC stays constant", "The APC always approaches infinity."],correct:0,exp:"As income rises, APC falls and moves closer in value to the MPC."},
+{q:"As increase in consumption at any given level of income is likely to lead",options:["Higher aggregate demand", "An increase in exports", "A fall in taxation revenue", "A decrease in import spending"],correct:0,exp:"Higher consumption at any income level raises aggregate demand."},
+{q:"Lower interest rates are likely to :",options:["Decrease in consumption", "increase cost of borrowing", "Encourage saving", "increase borrowing and spending"],correct:3,exp:"Lower interest rates reduce the cost of borrowing, encouraging borrowing and spending."},
+{q:"The MPC is equal to :",options:["Total spending / total consumption", "Total consumption/total income", "Change in consumption /change in income", "none of the above."],correct:2,exp:"MPC = Change in Consumption ÷ Change in Income."},
+{q:"The relationship between total spending on consumption and the total income is the",options:["Consumption function", "Savings function", "Investment function", "aggregate demand function"],correct:0,exp:"This relationship between consumption spending and total income defines the consumption function."},
+{q:"The sum of the MPC and MPS is",options:["1", "2", "0.1", "1.1"],correct:0,exp:"MPC + MPS always equals 1, since income is either consumed or saved."},
+{q:"As income increases, consumption will",options:["Fall", "Not change", "Fluctuate", "Increase"],correct:3,exp:"As income rises, consumption also increases (though by less than the rise in income)."},
+{q:"When investment is assumed autonomous the slope of the AD schedule is determined by the",options:["marginal propensity to invest", "disposable income", "marginal propensity to consume", "average propensity to consume"],correct:2,exp:"With autonomous investment, the slope of the Aggregate Demand schedule is determined by the MPC."},
+{q:"The multiplier tells us how much changes after a shift in",options:["Consumption , income", "investment, output", "savings, investment", "output, aggregate demand"],correct:3,exp:"Per the official key, the multiplier links changes in output with shifts in aggregate demand."},
+{q:"The multiplier is calculated as",options:["1/(1-MPC)", "1/MPS", "1/MPC", "a and b"],correct:3,exp:"The multiplier = 1/(1-MPC), which is also equal to 1/MPS since MPC+MPS=1 — so both (a) and (b) are correct."},
+{q:"It the MPC is 0.5, the multiplier is",options:["2", "1/2", "0.2", "20"],correct:0,exp:"Multiplier = 1/(1-MPC) = 1/(1-0.5) = 1/0.5 = 2."},
+{q:"In an open economy import the value of the multiplier",options:["Reduces", "increase", "does not change", "changes"],correct:0,exp:"Imports act as a leakage, so in an open economy the value of the multiplier reduces."},
+{q:"According to Keynes, investment is a function of the MEC and",options:["Demand", "Supply", "Income", "Rate of interest"],correct:3,exp:"Keynes viewed investment as a function of the Marginal Efficiency of Capital (MEC) and the rate of interest."},
+{q:"The term super multiplier was first used by",options:["J.R.Hicks", "R.G.D. Allen", "Kahn", "Keynes"],correct:0,exp:"The term 'super multiplier' was first used by J.R. Hicks."},
+{q:"The term MEC was introduced by",options:["Adam Smith", "J.M. Keynes", "Ricardo", "Malthus"],correct:1,exp:"The concept of Marginal Efficiency of Capital (MEC) was introduced by J.M. Keynes."},
+];
+
+const ECO05_MONETARY_ECONOMICS = [
+{q:"The RBI Headquarters is located at",options:["Delhi", "Chennai", "Mumbai", "Bengaluru"],correct:2,exp:"The Reserve Bank of India's headquarters is located in Mumbai."},
+{q:"Money is",options:["Acceptable only when it has intrinsic value", "Constant in purchasing power", "The most liquid of all assets", "Needed for allocation of resources"],correct:2,exp:"Money is the most liquid of all assets since it can be readily used in transactions."},
+{q:"Paper currency system is managed by the",options:["Central Monetary authority", "State Government", "Central Government", "Banks"],correct:0,exp:"The paper currency system is managed by the Central Monetary authority (the central bank)."},
+{q:"The basic distinction between M1 and M2 is with regard to .",options:["Post office total deposits", "Saving deposits with post office savings bank", "Terms deposits of banks", "Currency"],correct:1,exp:"M2 = M1 + savings deposits with post office savings banks, which is the key distinguishing component."},
+{q:"Irving Fisher’s Quantity Theory of Money was popularized in",options:["1908", "1910", "1911", "1914."],correct:2,exp:"Irving Fisher's Quantity Theory of Money was popularized in 1911."},
+{q:"MV stands for",options:["Demand for money", "Supply of legal tender money", "Supply of bank money", "Total supply of money"],correct:1,exp:"In the equation MV=PT, MV represents the supply of legal tender money multiplied by its velocity."},
+{q:"Inflation means",options:["Prices are rising", "Prices are falling", "Value of money is increasing", "Prices are remaining the same"],correct:0,exp:"Inflation refers to a sustained rise in the general price level."},
+{q:"_________inflation results in a serious depreciation of the value of money.",options:["Creeping", "Walking", "Running", "Hyper"],correct:3,exp:"Hyperinflation causes a serious and rapid depreciation in the value of money."},
+{q:"_________inflation occurs when general prices of commodities increases due to increase in production costs such as wages and raw materials.",options:["Cost-push", "Demand pull", "Running", "Galloping"],correct:0,exp:"Cost-push inflation occurs when rising production costs (wages, raw materials) push up prices."},
+{q:"During inflation, who are the gainers?",options:["Debtors", "Creditors", "Wage and salary earners", "Government"],correct:0,exp:"During inflation, debtors gain because they repay loans with money that has lower purchasing power."},
+{q:"_____________is a decrease in the rate of inflation.",options:["Disinflation", "Deflation", "Stagflation", "Depression"],correct:0,exp:"Disinflation refers to a decrease in the rate of inflation (prices still rise, but more slowly)."},
+{q:"Stagflation combines the rate of inflation with",options:["Stagnation", "Employment", "Output", "Price"],correct:0,exp:"Stagflation is the combination of economic stagnation with high inflation."},
+{q:"The study of alternating fluctuations in business activity is referred to in Economics as",options:["Boom", "Recession", "Recovery", "Trade cycle"],correct:3,exp:"The alternating phases of boom, recession, and recovery together form the trade cycle."},
+{q:"During depression the level of economic activity becomes extremely",options:["High", "Bad", "Low", "Good"],correct:2,exp:"During a depression, the level of economic activity falls to an extremely low point."},
+{q:"“Money can be anything that is generally acceptable as a means of exchange and that the same time acts as a measure and a store of value”, This definition was given by",options:["Crowther", "A.C.Pigou", "F.A.Walker", "Francis Bacon"],correct:0,exp:"This definition of money was given by Crowther."},
+{q:"Debit card is an example of",options:["Currency", "Paper currency", "Plastic money", "Money"],correct:2,exp:"A debit card is a common example of plastic money."},
+{q:"Fisher’s Quantity Theory of money is based on the essential function of money as",options:["Measure of value", "Store of value", "Medium of exchange", "Standard of deferred payment"],correct:2,exp:"Fisher's Quantity Theory is based on money's function as a medium of exchange."},
+{q:"V in MV = PT equation stands for",options:["Volume of trade", "Velocity of circulation of money", "Volume of transaction", "Volume of bank and credit money"],correct:1,exp:"In Fisher's equation MV=PT, V stands for the velocity of circulation of money."},
+{q:"When prices rise slowly, we call it",options:["Galloping inflation", "Mild inflation", "Hyper inflation", "Deflation"],correct:1,exp:"A slow, gradual rise in prices is called mild (or creeping) inflation."},
+{q:"_____________inflation is in no way dangerous to the economy.",options:["Walking", "Running", "Creeping", "Galloping"],correct:2,exp:"Creeping inflation, being very mild, is generally not considered dangerous to the economy."},
+];
+
+const ECO06_BANKING = [
+{q:"A Bank is a",options:["Financial institution", "Corporate", "An Industry", "Service institutions"],correct:0,exp:"A bank is fundamentally a financial institution."},
+{q:"A Commercial Bank is an institutions that provides services",options:["Accepting deposits", "Providing loans", "Both a and b", "None of the above"],correct:2,exp:"Commercial banks provide both deposit-accepting and loan-providing services."},
+{q:"The Functions of commercial banks are broadly classified into",options:["Primary Functions", "Secondary functions", "Other functions", "a, b, and c"],correct:3,exp:"Commercial bank functions are broadly classified into primary, secondary, and other functions."},
+{q:"Bank credit refers to",options:["Bank Loans", "Advances", "Bank loans and advances", "Borrowings"],correct:2,exp:"Bank credit refers collectively to bank loans and advances."},
+{q:"Credit creation means.",options:["Multiplication of loans and advances", "Revenue", "Expenditure", "Debt"],correct:0,exp:"Credit creation refers to the multiplication of loans and advances by commercial banks."},
+{q:"NBFI does not have.",options:["Banking license", "government approval", "Money market approval", "Finance ministry approval"],correct:0,exp:"A Non-Banking Financial Institution (NBFI) does not hold a banking license."},
+{q:"Central bank is --------------- authority of any country.",options:["Monetary", "Fiscal", "Wage", "National Income"],correct:0,exp:"The central bank is the monetary authority of a country."},
+{q:"Who will act as the banker to the Government of India?",options:["SBI", "NABARD", "ICICI", "RBI"],correct:3,exp:"The RBI acts as the banker to the Government of India."},
+{q:"Lender of the last resort is one of the functions of.",options:["Central Bank", "Commercial banks", "Land Development Banks", "Co-operative banks"],correct:0,exp:"Acting as the 'lender of last resort' is a key function of the Central Bank."},
+{q:"Bank Rate means.",options:["Re-discounting the first class securities", "Interest rate", "Exchange rate", "Growth rate"],correct:0,exp:"Bank rate is the rate at which the central bank re-discounts first-class securities."},
+{q:"Repo Rate means.",options:["Rate at which the Commercial Banks are willing to lend to RBI", "Rate at which the RBI is willing to lend to commercial banks", "Exchange rate of the foreign bank", "Growth rate of the economy"],correct:1,exp:"The repo rate is the rate at which the RBI lends to commercial banks."},
+{q:"Moral suasion refers.",options:["Optimization", "Maximization", "Persuasion", "Minimization"],correct:2,exp:"Moral suasion refers to the central bank's use of persuasion to influence bank behaviour."},
+{q:"ARDC started functioning from",options:["June 3, 1963", "July 3, 1963", "June 1, 1963", "July 1, 1963"],correct:3,exp:"The Agricultural Refinance and Development Corporation (ARDC) started functioning from July 1, 1963."},
+{q:"NABARD was set up in.",options:["July 1962", "July 1972", "July 1982", "July 1992"],correct:2,exp:"NABARD (National Bank for Agriculture and Rural Development) was set up in July 1982."},
+{q:"EXIM bank was established in.",options:["June 1982", "April 1982", "May 1982", "March 1982"],correct:3,exp:"The EXIM Bank of India was established in March 1982."},
+{q:"The State Financial Corporation Act was passed by",options:["Government of India", "Government of Tamilnadu", "Government of Union Territories", "Local Government."],correct:0,exp:"The State Financial Corporation Act was passed by the Government of India."},
+{q:"Monetary policy his formulated by.",options:["Co-operative banks", "Commercial banks", "Central Bank", "Foreign banks"],correct:2,exp:"Monetary policy is formulated by the Central Bank of a country."},
+{q:"Online Banking is also known as.",options:["E-Banking", "Internet Banking", "RTGS", "NEFT"],correct:1,exp:"Online banking is also referred to as Internet Banking."},
+{q:"Expansions of ATM.",options:["Automated Teller Machine", "Adjustment Teller Machine", "Automatic Teller mechanism", "Any Time Money"],correct:0,exp:"ATM stands for Automated Teller Machine."},
+{q:"2016 Demonetization of currency includes denominations of",options:["Rs.500 and Rs.1000", "Rs.1000 and Rs.2000", "Rs.200 and Rs.500", "All the above"],correct:0,exp:"The 2016 demonetization withdrew Rs.500 and Rs.1000 currency notes."},
+];
+
+const ECO07_INTERNATIONAL_ECONOMICS = [
+{q:"Trade between two countries is known as .................trade",options:["External", "Internal", "Inter-regional", "Home"],correct:0,exp:"Trade between two countries is known as external (or foreign) trade."},
+{q:"Which of the following factors influence trade?",options:["The stage of development of a product", "The relative price of factors of productions.", "Government.", "All of the above."],correct:3,exp:"Product development stage, relative factor prices, and government policy all influence trade."},
+{q:"International trade differs from domestic trade because of",options:["Trade restrictions", "Immobility of factors", "Different government policies", "All the above"],correct:3,exp:"International trade differs from domestic trade due to trade restrictions, factor immobility, and differing government policies."},
+{q:"In general, a primary reason why nations conduct international trade is because",options:["Some nations prefer to produce one thing while others produce another", "Resources are not equally distributed among all trading nations", "Trade enhances opportunities to accumulate profits", "Interest rates are not identical in all trading nations"],correct:1,exp:"Unequal distribution of resources among nations is a primary reason for international trade."},
+{q:"Which of the following is a modern theory of international trade?",options:["Absolute cost", "Comparative cost", "Factor endowment theory", "None of these"],correct:2,exp:"The Factor Endowment (Heckscher-Ohlin) theory is a modern theory of international trade."},
+{q:"Exchange rates are determined in",options:["Money market", "Foreign exchange market", "Stock market", "Capital market"],correct:1,exp:"Exchange rates are determined in the foreign exchange market."},
+{q:"Exchange rate for currencies is determined by supply and demand under the system of",options:["Fixed exchange rate", "Flexible exchange rate", "Constant", "Government regulated"],correct:1,exp:"Under a flexible exchange rate system, rates are determined by market supply and demand."},
+{q:"Net export equals ……",options:["Export x Import", "Export + Import", "Export – Import", "Exports of services only"],correct:2,exp:"Net exports equal exports minus imports."},
+{q:"Who among the following enunciated the concept of single factoral terms of trade?",options:["Jacob Viner", "G.S.Donens", "Taussig", "J.S.Mill"],correct:0,exp:"Jacob Viner enunciated the concept of single factoral terms of trade."},
+{q:"Terms of Trade of a country show ……………",options:["Ratio of goods exported and imported", "Ratio of import duties", "Ratio of prices of exports and imports", "Both (a) and (c)"],correct:2,exp:"Terms of trade show the ratio of export prices to import prices."},
+{q:"Favourable trade means value of exports are ..........Than that of imports.",options:["More", "Less", "More or Less", "Not more than"],correct:0,exp:"A favourable trade balance means the value of exports exceeds that of imports."},
+{q:"If there is an imbalance in the trade balance (more imports than exports), it can be reduced by",options:["decreasing customs duties", "increasing export duties", "stimulating exports", "stimulating imports"],correct:2,exp:"Stimulating exports helps reduce a trade imbalance caused by excess imports."},
+{q:"BOP includes",options:["visible items only", "invisible items only", "both visible and invisible items", "merchandise trade only"],correct:2,exp:"The Balance of Payments (BOP) includes both visible and invisible items."},
+{q:"Components of balance of payments of a country includes",options:["Current account", "Official account", "Capital account", "All of above"],correct:3,exp:"BOP includes the current account, capital account, and official reserve account, among others."},
+{q:"In the case of BOT,",options:["Transactions of goods are recorded.", "Transactions of both goods and services are recorded.", "Both capital and financial accounts are included.", "All of these"],correct:0,exp:"The Balance of Trade (BOT) records only transactions of goods (visible items)."},
+{q:"Tourism and travel are classified in which of balance of payments accounts?",options:["merchandise trade account", "services account", "unilateral transfers account", "capital account"],correct:1,exp:"Tourism and travel are classified under the services account of the BOP."},
+{q:"Cyclical disequilibrium in BOP occurs because of",options:["Different paths of business cycle.", "The income elasticity of demand or price elasticity of demand is different.", "long-run changes in an economy", "Both (a) and (b)."],correct:3,exp:"Cyclical disequilibrium arises from differing business cycle paths and differing elasticities of demand — both (a) and (b)."},
+{q:"Which of the following is not an example of foreign direct investment?",options:["the construction of a new auto assembly plant overseas", "the acquisition of an existing steel mill overseas", "the purchase of bonds or stock issued by a textile company overseas", "the creation of a wholly owned business firm overseas"],correct:2,exp:"Purchasing bonds/stock is portfolio investment, not FDI, since it doesn't involve managerial control."},
+{q:"Foreign direct investments not permitted in India",options:["Banking", "Automic energy", "Pharmaceutical", "Insurance"],correct:1,exp:"FDI is not permitted in the atomic energy sector in India."},
+{q:"Benefits of FDI include, theoretically",options:["Boost in Economic Growth", "Increase in the import and export of goods and services", "Increased employment and skill levels", "All of these"],correct:3,exp:"FDI theoretically boosts economic growth, trade, employment, and skill levels — all of these."},
+];
+
+const ECO08_INTERNATIONAL_ECONOMIC_ORGANISATIONS = [
+{q:"International Monetary Fund was an outcome of",options:["Pandung Conference", "Dunkel Draft", "Bretton Woods Conference", "Doha Conference"],correct:2,exp:"The IMF was established as an outcome of the Bretton Woods Conference."},
+{q:"International Monetary Fund is having its headquarters at",options:["Washington D.C.", "New York", "Vienna", "Geneva"],correct:0,exp:"The IMF's headquarters is located in Washington D.C."},
+{q:"IBRD is otherwise called",options:["IMF", "World Bank", "ASEAN", "International Finance Corporation"],correct:1,exp:"IBRD (International Bank for Reconstruction and Development) is otherwise known as the World Bank."},
+{q:"The other name for Special Drawing Rights is",options:["Paper gold", "Quotas", "Voluntary Export Restrictions", "None of these"],correct:0,exp:"Special Drawing Rights (SDRs) are also known as 'paper gold'."},
+{q:"The organization which provides long term loan is",options:["World Bank", "International Monetary Fund", "World Trade Organisation", "BRICS"],correct:0,exp:"The World Bank provides long-term loans to member countries."},
+{q:"Which of the following countries is not a member of SAARC?",options:["Sri Lanka", "Japan", "Bangladesh", "Afghanistan"],correct:1,exp:"Japan is not a member of SAARC (South Asian Association for Regional Cooperation)."},
+{q:"International Development Association is an affiliate of",options:["IMF", "World Bank", "SAARC", "ASEAN"],correct:1,exp:"The International Development Association (IDA) is an affiliate of the World Bank."},
+{q:"----------- relates to patents, copyrights, trade secrets, etc.,",options:["TRIPS", "TRIMS", "GATS", "NAMA"],correct:0,exp:"TRIPS (Trade-Related Aspects of Intellectual Property Rights) relates to patents, copyrights, and trade secrets."},
+{q:"The first ministerial meeting of WTO was held at",options:["Singapore", "Geneva", "Seattle", "Doha"],correct:0,exp:"The first ministerial meeting of the WTO was held in Singapore."},
+{q:"ASEAN meetings are held once in every years",options:["2", "3", "4", "5"],correct:1,exp:"ASEAN summit meetings are held once every 3 years (as per this key)."},
+{q:"Which of the following is not the member of SAARC?",options:["Pakistan", "Sri Lanka", "Bhutan", "China"],correct:3,exp:"China is not a member of SAARC."},
+{q:"SAARC meets once in ----------- years.",options:["2", "3", "4", "5"],correct:0,exp:"SAARC meets once every 2 years."},
+{q:"The headquarters of ASEAN is",options:["Jaharta", "New Delhi", "Colombo", "Tokyo"],correct:0,exp:"The headquarters of ASEAN is located in Jakarta, Indonesia."},
+{q:"The term BRIC was coined in",options:["2001", "2005", "2008", "2010"],correct:0,exp:"The term BRIC was coined in 2001."},
+{q:"ASEAN was created in",options:["1965", "1967", "1972", "1997"],correct:1,exp:"ASEAN (Association of Southeast Asian Nations) was created in 1967."},
+{q:"The Tenth BRICS Summit was held in July 2018 at",options:["Beijing", "Moscow", "Johannesburg", "Brasilia"],correct:2,exp:"The 10th BRICS Summit in July 2018 was held in Johannesburg, South Africa."},
+{q:"New Development Bank is associated with",options:["BRICS", "WTO", "SAARC", "ASEAN"],correct:0,exp:"The New Development Bank is associated with BRICS."},
+{q:"Which of the following does not come under ‘Six dialogue partners’ of ASEAN?",options:["China", "Japan", "India", "North Korea"],correct:3,exp:"North Korea is not among ASEAN's six dialogue partners."},
+{q:"SAARC Agricultural Information Centre (SAIC) works as a central information institution for agriculture related resources was founded on",options:["1985", "1988", "1992", "1998"],correct:1,exp:"SAARC Agricultural Information Centre (SAIC) was founded in 1988."},
+{q:"BENELUX is a form of",options:["Free trade area", "Economic Union", "Common market", "Customs union"],correct:3,exp:"BENELUX (Belgium, Netherlands, Luxembourg) is a form of customs union."},
+];
+
+const ECO09_FISCAL_ECONOMICS = [
+{q:"The modern state is",options:["Laissez-faire state", "Aristocratic state", "Welfare state", "Police state"],correct:2,exp:"The modern state is characterized as a welfare state."},
+{q:"One of the following is NOT a feature of private finance",options:["Balancing of income and expenditure", "Secrecy", "Saving some part of income", "Publicity"],correct:3,exp:"Publicity is a feature of public finance, not private finance, which is characterized by secrecy."},
+{q:"The tax possesses the following characteristics",options:["Compulsory", "No quid pro quo", "Failure to pay is offence", "All the above"],correct:3,exp:"A tax is compulsory, involves no direct quid pro quo, and non-payment is an offence — all of the above."},
+{q:"Which of the following canons of taxation was not listed by Adam smith?",options:["Canon of equality", "Canon of certainty", "Canon of convenience", "Canon of simplicity"],correct:3,exp:"Adam Smith's original canons were equality, certainty, convenience, and economy — not simplicity."},
+{q:"Consider the following statements and identify the correct ones. i. Central government does not have exclusive power to impose tax which is not mentioned in state or concurrent list. ii. The Constitution also provides for transferring certain tax revenues from union list to states.",options:["i only", "ii only", "both", "none"],correct:1,exp:"Only statement (ii), regarding transfer of tax revenues from the union list to states, is correct here."},
+{q:"GST is equivalence of",options:["Sales tax", "Corporation tax", "Income tax", "Local tax"],correct:0,exp:"GST is considered equivalent to a comprehensive sales tax."},
+{q:"The direct tax has the following merits except",options:["equity", "convenient", "certainty", "civic consciousness"],correct:1,exp:"Convenience is often cited as a limitation, not a merit, of direct taxes."},
+{q:"Which of the following is a direct tax?",options:["Excise duty", "Income tax", "Customs duty", "Service tax"],correct:1,exp:"Income tax is a direct tax, as its burden cannot be shifted to another person."},
+{q:"Which of the following is not a tax under Union list?",options:["Personal Income Tax", "Corporation Tax", "Agricultural Income Tax", "Excise duty"],correct:2,exp:"Agricultural Income Tax falls under the State list, not the Union list."},
+{q:"“Revenue Receipts” of the Government do not include",options:["Interest", "Profits and dividends", "Recoveries and loans", "Rent from property"],correct:3,exp:"Per the official key, rent from property is excluded from this classification of revenue receipts."},
+{q:"The difference between revenue expenditure and revenue receipts is",options:["Revenue deficit", "Fiscal deficit", "Budget deficit", "Primary deficit"],correct:0,exp:"The gap between revenue expenditure and revenue receipts is called the revenue deficit."},
+{q:"The difference between total expenditure and total receipts including loans and other liabilities is called",options:["Fiscal deficit", "Budget deficit", "Primary deficit", "Revenue deficit"],correct:0,exp:"Fiscal deficit is the difference between total expenditure and total receipts excluding borrowings."},
+{q:"The primary purpose of deficit financing is",options:["Economic development", "Economic stability", "Economic equality", "Employment generation"],correct:0,exp:"Deficit financing is primarily used to fund economic development."},
+{q:"Deficit budget means",options:["An excess of government’s revenue over expenditure", "An excess of government’s current expenditure over its current revenue", "An excess of government’s total expenditure over its total revenue", "None of above"],correct:2,exp:"A deficit budget occurs when total government expenditure exceeds total revenue."},
+{q:"Methods of repayment of public debt is",options:["Conversion", "Sinking fund", "Funded debt", "All these"],correct:3,exp:"Conversion, sinking fund, and funded debt are all methods of repaying public debt."},
+{q:"Conversion of public debt means exchange of",options:["new bonds for the old ones", "low interest bonds for higher interest bonds", "Long term bonds for short term bonds", "All the above"],correct:1,exp:"Conversion of public debt means exchanging low-interest bonds for higher-interest ones (or vice versa as rates change)."},
+{q:"The word budget has been derived from the French word “bougette” which means",options:["A small bag", "An empty box", "A box with papers", "None of the above"],correct:0,exp:"The word 'budget' comes from the French word 'bougette', meaning a small bag."},
+{q:"Which one of the following deficits does not consider borrowing as a receipt?",options:["Revenue deficit", "Budgetary deficit", "Fiscal deficit", "Primary deficit"],correct:2,exp:"Fiscal deficit is calculated without considering borrowings as a receipt."},
+{q:"Finance Commission determines",options:["The finances of Government of India", "The resources transfer to the states", "The resources transfer to the various departments", "None of the above"],correct:1,exp:"The Finance Commission determines the transfer of resources from the Centre to the states."},
+{q:"Consider the following statements and identify the right ones. i. The finance commission is appointed by the President ii. The tenure of Finance commission is five years",options:["i only", "ii only", "both", "none"],correct:2,exp:"Both statements are correct — the Finance Commission is appointed by the President for a 5-year tenure."},
+];
+
+const ECO10_ENVIRONMENTAL_ECONOMICS = [
+{q:"The term environment has been derived from a French word-----------.",options:["Environ", "Environs", "Environia", "Envir"],correct:2,exp:"The term 'environment' is derived from the French word 'Environia'."},
+{q:"The word biotic means environment",options:["Living", "Non-living", "Physical", "None of the above"],correct:0,exp:"'Biotic' refers to the living components of the environment."},
+{q:"Ecosystem is smallest unit of",options:["Ionosphere", "Lithosphere", "Biosphere", "Mesosphere"],correct:2,exp:"An ecosystem is considered the smallest functional unit of the biosphere."},
+{q:"Who developed Material Balance Models?",options:["Thomas and Picardy", "AlenKneese and R.V. Ayres", "Joan Robinson and J.M. Keynes", "Joseph Stiglitz and Edward Chamberlin"],correct:1,exp:"Material Balance Models were developed by Allen Kneese and R.V. Ayres."},
+{q:"Environmental goods are --------------",options:["Market goods", "Non-market goods", "Both", "None of the above"],correct:1,exp:"Environmental goods are typically classified as non-market goods."},
+{q:"In a pure public good, consumption is -----------------",options:["Rival", "Non-rival", "Both", "None of the above"],correct:1,exp:"In a pure public good, consumption is non-rival — one person's use doesn't reduce availability for others."},
+{q:"One of the most important market failures is caused by ------------",options:["Positive externalities", "Negative externalities", "Both", "None of the above"],correct:1,exp:"Negative externalities are one of the most important causes of market failure."},
+{q:"The common source of outdoor air pollution is caused by combustion processes from the following----------",options:["Heating and cooking", "Traditional stoves", "Motor vehicles", "All the above"],correct:1,exp:"Per the official key, traditional stoves are identified as a common combustion source of outdoor air pollution."},
+{q:"The major contributor of Carbon monoxide is",options:["Automobiles", "Industrial process", "Stationary fuel combustion", "None of the above"],correct:0,exp:"Automobiles are the major contributor of carbon monoxide emissions."},
+{q:"Which one of the following causes of global warming?",options:["Earth gravitation force", "Oxygen", "Centripetal force", "Increasing temperature"],correct:3,exp:"Global warming is characterized by an increasing temperature trend."},
+{q:"Which of the following is responsible for protecting humans from harmful ultraviolet rays?",options:["UV-A", "UV-C", "Ozone layer", "None of the above"],correct:2,exp:"The ozone layer absorbs and protects humans from harmful ultraviolet rays."},
+{q:"Global warming also refers to as",options:["Ecological change", "Climate Change", "Atmosphere change", "None of the above"],correct:3,exp:"Per this classification, none of the listed terms is treated as an exact equivalent for global warming."},
+{q:"Which of the following is the anticipated effect of Global warming?",options:["Rising sea levels", "Changing precipitation", "Expansion of deserts", "All of the above"],correct:1,exp:"Changing precipitation patterns is highlighted as a key anticipated effect of global warming."},
+{q:"The process of nutrient enrichment is termed as",options:["Eutrophication", "Limiting nutrients", "Enrichment", "Schistosomiasis"],correct:0,exp:"The process of nutrient enrichment of water bodies is called eutrophication."},
+{q:"Primary cause of Soil pollution is ----------------",options:["Pest control measures", "Land reclamation", "Agricultural runoff", "Chemical fertilizer"],correct:3,exp:"Chemical fertilizer use is a primary cause of soil pollution."},
+{q:"Which of the following is main cause for deforestation?",options:["Timber harvesting industry", "Natural afforestation", "Soil stabilization", "Climate stabilization"],correct:0,exp:"The timber harvesting industry is a main cause of deforestation."},
+{q:"Electronic waste is commonly referred as ----------",options:["Solid waste", "Composite waste", "E-waste", "Hospital waste"],correct:2,exp:"Electronic waste is commonly referred to as e-waste."},
+{q:"Acid rain is one of the consequences of------------Air pollution",options:["Water Pollution", "Land pollution", "Noise pollution", "None of these"],correct:0,exp:"Acid rain, caused by air pollution, in turn leads to water pollution by acidifying rivers and lakes."},
+{q:"Sustainable Development Goals and targets are to be achieved by -------",options:["2020", "2025", "2030", "2050"],correct:2,exp:"The Sustainable Development Goals (SDGs) are targeted to be achieved by 2030."},
+{q:"Alkali soils are predominantly located in the-------------plains?",options:["Indus-Ganga", "North-Indian", "Gangetic plains", "All the above"],correct:3,exp:"Alkali soils are found across the Indus-Gangetic/North Indian plains region — all of these describe the same broad area."},
+];
+
+const ECO11_ECONOMICS_OF_DEVELOPMENT_AND_PLANNING = [
+{q:"\"Redistribution with Growth\" became popular slogan]er which approach?",options:["Traditional approach", "New welfare oriented approach", "Industrial approach", "None of the above"],correct:1,exp:"'Redistribution with Growth' became a popular slogan under the New Welfare oriented approach."},
+{q:"Which is not the feature of economic growth?",options:["Concerned with developed nations", "Gradual change", "Concerned with quantitative aspect", "Wider concept"],correct:3,exp:"Being a 'wider concept' describes economic development, not economic growth."},
+{q:"Which among the following is a characteristic of underdevelopment?",options:["Vicious circle of poverty", "Rising mass consumption", "Growth of Industries", "High rate of urbanization"],correct:0,exp:"The vicious circle of poverty is a defining characteristic of underdeveloped economies."},
+{q:"The non-economic determinant of economic development",options:["Natural resources", "Human resource", "Capital formation", "Foreign trade"],correct:1,exp:"Human resource is considered a non-economic (social) determinant of economic development."},
+{q:"Economic growth measures the ------- --------",options:["Growth of productivity", "Increase in nominal income", "Increase in output", "None of the above"],correct:2,exp:"Economic growth specifically measures the increase in output."},
+{q:"The supply side vicious circle of poverty suggests that poor nations remain poor because",options:["Saving remains low", "Investment remains low", "There is a lack of effective government", "a and b above"],correct:3,exp:"On the supply side, both low savings and low investment (a and b) keep poor nations trapped in poverty."},
+{q:"Which of the following plan has focused on the agriculture and rural economy?",options:["People’s Plan", "Bombay Plan", "Gandhian Plan", "Vishveshwarya Plan"],correct:2,exp:"The Gandhian Plan focused specifically on agriculture and the rural economy."},
+{q:"Arrange following plans in correct chronological order a) People’s Plan b) Bombay Plan c) Jawaharlal Nehru Plan d) Vishveshwarya Plan",options:["(i) (ii) (iii) (iv)", "(iv) (iii) (ii) (i)", "(i) (ii) (iv) (iii)", "(ii) (i) (iv) (iii)"],correct:1,exp:"Chronologically: Vishveshwarya Plan (1934) → Nehru Plan (1938) → Bombay Plan (1944) → People's Plan (1945) — i.e., (iv)(iii)(ii)(i)."},
+{q:"M.N. Roy was associated with --------- ------------",options:["Congress Plan", "People’s Plan", "Bombay Plan", "None of the above"],correct:1,exp:"M.N. Roy was associated with the People's Plan."},
+{q:"Which of the following country adopts indicative planning?",options:["France", "Germany", "Italy", "Russia"],correct:0,exp:"France is known for adopting indicative planning."},
+{q:"Short-term plan is also known as----- --------------",options:["Controlling Plans", "De-controlling Plans", "Rolling Plans", "De-rolling Plans"],correct:0,exp:"A short-term plan is also known as a Controlling Plan."},
+{q:"Long-term plan is also known as ----- ----------------",options:["Progressive Plans", "Non-progressive Plans", "Perspective Plans", "Non-perspective Plans"],correct:2,exp:"A long-term plan is also known as a Perspective Plan."},
+{q:"The basic philosophy behind long-term planning is to bring ------------ changes in the economy?",options:["Financial", "Agricultural", "Industrial", "Structural"],correct:3,exp:"Long-term planning aims to bring about structural changes in the economy."},
+{q:"Sarvodaya Plan was advocated by----- --------------",options:["Mahatma Gandhi", "J.P. Narayan", "S. N Agarwal", "M.N. Roy"],correct:1,exp:"The Sarvodaya Plan was advocated by J.P. Narayan."},
+{q:"Planning Commission was set up in the year ---------------",options:["1950", "1951", "1947", "1948"],correct:0,exp:"The Planning Commission of India was set up in the year 1950."},
+{q:"Who wrote the book ‘The Road to Serfdom’?",options:["Friedrich Hayek", "H.R. Hicks", "David Ricardo", "Thomas Robert Malthus"],correct:0,exp:"'The Road to Serfdom' was written by Friedrich Hayek."},
+{q:"Perspective plan is also known as ----",options:["Short-term plan", "Medium-term plan", "Long-term plan", "None of the above"],correct:2,exp:"A perspective plan is also known as a long-term plan."},
+{q:"NITI Aayog is formed through------------------------",options:["Presidential Ordinance", "Allocation of business rules by President of India", "Cabinet resolution", "None of the above"],correct:2,exp:"NITI Aayog was formed through a Cabinet resolution."},
+{q:"Expansion of NITI Aayog?",options:["National Institute to Transform India", "National Institute for Transforming India", "National Institution to Transform India", "National Institution for Transforming India"],correct:3,exp:"NITI Aayog stands for 'National Institution for Transforming India'."},
+{q:"The Chair Person of NITI Aayog is",options:["Prime Minister", "President", "Vice – President", "Finance Minister"],correct:0,exp:"The Prime Minister serves as the Chairperson of NITI Aayog."},
+];
+
+const ECO12_INTRODUCTION_TO_STATISTICAL_METHODS_AND_ECONOMETRICS = [
+{q:"The word ‘statistics’ is used as ___.",options:["Singular.", "Plural", "Singular and Plural.", "None of above."],correct:2,exp:"The word 'statistics' is used both in the singular and plural sense, depending on context."},
+{q:"Who stated that statistics as a science of estimates and probabilities.",options:["Horace Secrist.", "R.A Fisher.", "Ya-Lun-Chou", "Boddington"],correct:3,exp:"Boddington defined statistics as the science of estimates and probabilities."},
+{q:"Sources of secondary data are___.",options:["Published sources.", "Unpublished sources.", "neither published nor unpublished sources.", "Both (A) and (B)"],correct:3,exp:"Secondary data can come from both published and unpublished sources."},
+{q:"The data collected by questionnaires are___.",options:["Primary data.", "Secondary data.", "Published data.", "Grouped data."],correct:0,exp:"Data collected directly via questionnaires is primary data."},
+{q:"A measure of the strength of the linear relationship that exists between two variables is called:",options:["Slope", "Intercept", "Correlation coefficient", "Regression equation"],correct:2,exp:"The correlation coefficient measures the strength of the linear relationship between two variables."},
+{q:"If both variables X and Y increase or decrease simultaneously, then the coefficient of correlation will be:",options:["Positive", "Negative", "Zero", "One"],correct:0,exp:"When both variables move in the same direction, the correlation coefficient is positive."},
+{q:"If the points on the scatter diagram indicate that as one variable increases the other variable tends to decrease the value of r will be:",options:["Perfect positive", "Perfect negative", "Negative", "Zero"],correct:2,exp:"When one variable increases as the other decreases, the correlation coefficient r is negative."},
+{q:"The value of the coefficient of correlation r lies between:",options:["0 and 1", "-1 and 0", "-1 and +1", "-0.5 and +0.5"],correct:2,exp:"The correlation coefficient r always lies between -1 and +1."},
+{q:"The term regression was used by:",options:["Newton", "Pearson", "Spearman", "Galton"],correct:3,exp:"The term 'regression' was first used by Francis Galton."},
+{q:"The purpose of simple linear regression analysis is to:",options:["Predict one variable from another variable", "Replace points on a scatter diagram by a straight-line", "Measure the degree to which two variables are linearly associated", "Obtain the expected value of the independent random variable for a given value of the dependent variable"],correct:0,exp:"Simple linear regression is used to predict the value of one variable from another."},
+{q:"A process by which we estimate the value of dependent variable on the basis of one or more independent variables is called:",options:["Correlation", "Regression", "Residual", "Slope"],correct:1,exp:"Regression is the process of estimating a dependent variable's value from independent variables."},
+{q:"If Y = 2 - 0.2X, then the value of Y intercept is equal to",options:["-0.2", "2", "0.2X", "All of the above"],correct:1,exp:"In Y = 2 - 0.2X, the Y-intercept (constant term) is 2."},
+{q:"In the regression equation Y = β0+β1X, the Y is called:",options:["Independent variable", "Dependent variable", "Continuous variable", "none of the above"],correct:1,exp:"In Y = β0 + β1X, Y is the dependent variable."},
+{q:"In the regression equation Y = β0+β1X, the X is called:",options:["Independent variable", "Dependent variable", "Continuous variable", "None of the above"],correct:0,exp:"In Y = β0 + β1X, X is the independent variable."},
+{q:"Econometrics is the integration of",options:["Economics and Statistics", "Economics and Mathematics", "Economics, Mathematics and Statistics", "None of the above"],correct:2,exp:"Econometrics integrates Economics, Mathematics, and Statistics."},
+{q:"Econometric is the word coined by",options:["Francis Galton", "RagnarFrish", "Karl Person", "Spearsman"],correct:1,exp:"The word 'Econometrics' was coined by Ragnar Frisch."},
+{q:"The raw materials of Econometrics are:",options:["Data", "Goods", "Statistics", "Mathematics"],correct:0,exp:"Data serves as the raw material for econometric analysis."},
+{q:"The term Uiin regression equation is",options:["Residuals", "Standard error", "Stochastic error term", "None of these"],correct:2,exp:"The term Ui in a regression equation represents the stochastic error term."},
+{q:"The term Uiis introduced for the representation of",options:["Omitted Variable", "Standard error", "Bias", "Discrete Variable"],correct:0,exp:"The error term Ui is introduced to represent omitted variables not included in the model."},
+{q:"Econometrics is the amalgamation of",options:["3 subjects", "4 subjects", "2 subjects", "5 subjects"],correct:0,exp:"Econometrics is the amalgamation of 3 subjects: Economics, Mathematics, and Statistics."},
+];
+const CHAPTERS_ECONOMICS = [
+  {id:801, name:"Introduction to Macro Economics", icon:"🌐", questions:ECO01_INTRODUCTION_TO_MACRO_ECONOMICS, additionalQuestions:[]},
+  {id:802, name:"National Income", icon:"💰", questions:ECO02_NATIONAL_INCOME, additionalQuestions:[]},
+  {id:803, name:"Theories of Employment and Income", icon:"📈", questions:ECO03_THEORIES_OF_EMPLOYMENT_AND_INCOME, additionalQuestions:[]},
+  {id:804, name:"Consumption and Investment Functions", icon:"📉", questions:ECO04_CONSUMPTION_AND_INVESTMENT_FUNCTIONS, additionalQuestions:[]},
+  {id:805, name:"Monetary Economics", icon:"🏦", questions:ECO05_MONETARY_ECONOMICS, additionalQuestions:[]},
+  {id:806, name:"Banking", icon:"🏧", questions:ECO06_BANKING, additionalQuestions:[]},
+  {id:807, name:"International Economics", icon:"🌍", questions:ECO07_INTERNATIONAL_ECONOMICS, additionalQuestions:[]},
+  {id:808, name:"International Economic Organisations", icon:"🏛️", questions:ECO08_INTERNATIONAL_ECONOMIC_ORGANISATIONS, additionalQuestions:[]},
+  {id:809, name:"Fiscal Economics", icon:"📜", questions:ECO09_FISCAL_ECONOMICS, additionalQuestions:[]},
+  {id:810, name:"Environmental Economics", icon:"🌱", questions:ECO10_ENVIRONMENTAL_ECONOMICS, additionalQuestions:[]},
+  {id:811, name:"Economics of Development and Planning", icon:"🗺️", questions:ECO11_ECONOMICS_OF_DEVELOPMENT_AND_PLANNING, additionalQuestions:[]},
+  {id:812, name:"Introduction to Statistical Methods and Econometrics", icon:"📊", questions:ECO12_INTRODUCTION_TO_STATISTICAL_METHODS_AND_ECONOMETRICS, additionalQuestions:[]}
+];
+
 const SUBJECT_INFO = {
   cs:      {key:'cs',      name:'Computer Science', icon:'🖥️', short:'CS',   heroLine:'Computer Science — One Mark Practice',  themeColor:'#0EA5E9', tagline:'16 chapters • Python, SQL, Data Structures', chapters:CHAPTERS_CS,      unitLabel:'Ch',   sourceNote:'Source: Book Back 1 Mark Q&A PDF — real questions only'},
   maths:   {key:'maths',   name:'Mathematics',      icon:'📐', short:'Math', heroLine:'Mathematics — One Mark Practice',       themeColor:'#6366F1', tagline:'12 units • Matrices, Calculus, Probability & more', chapters:CHAPTERS_MATHS,   unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
@@ -2276,7 +2566,8 @@ const SUBJECT_INFO = {
   chemistry: {key:'chemistry', name:'Chemistry',     icon:'⚗️', short:'Chem', heroLine:'Chemistry — One Mark Practice',        themeColor:'#10B981', tagline:'15 units • Metallurgy, Organic Chemistry, Biomolecules & more', chapters:CHAPTERS_CHEMISTRY, unitLabel:'Unit', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   ca:      {key:'ca',      name:'Computer Applications', icon:'💻', short:'CA', heroLine:'Computer Applications — One Mark Practice', themeColor:'#F59E0B', tagline:'16 chapters • Multimedia, PHP, Networking, E-Commerce & more', chapters:CHAPTERS_CA, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
   biology: {key:'biology', name:'Biology',          icon:'🧬', short:'Bio',  heroLine:'Biology — One Mark Practice',           themeColor:'#EC4899', tagline:'22 chapters • Botany & Zoology, Genetics, Human Health & more', chapters:CHAPTERS_BIOLOGY, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
-  commerce: {key:'commerce', name:'Commerce',       icon:'📊', short:'Com',  heroLine:'Commerce — One Mark Practice',          themeColor:'#F97316', tagline:'28 chapters • Management, Markets, Marketing, Company Law & more', chapters:CHAPTERS_COMMERCE, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
+  commerce: {key:'commerce', name:'Commerce',       icon:'📊', short:'Com',  heroLine:'Commerce — One Mark Practice',          themeColor:'#F97316', tagline:'28 chapters • Management, Markets, Marketing, Company Law & more', chapters:CHAPTERS_COMMERCE, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'},
+  economics: {key:'economics', name:'Economics',    icon:'🌐', short:'Eco',  heroLine:'Economics — One Mark Practice',         themeColor:'#0D9488', tagline:'12 chapters • Macroeconomics, Banking, Fiscal & International Economics', chapters:CHAPTERS_ECONOMICS, unitLabel:'Ch', sourceNote:'Source: 12th Std Book Back 1 Mark Q&A PDF — real questions only'}
 };
 let currentSubject = 'cs';
 function activeChapters(){ return SUBJECT_INFO[currentSubject].chapters; }
@@ -2411,38 +2702,12 @@ const firebaseConfig = {
   messagingSenderId: "850933256837",
   appId: "1:850933256837:web:ae07a4b333e8e7b0870fec"
 };
-
-/* FIX: googleUser must exist BEFORE the firebase.* calls below run. If Firebase's
-   CDN scripts get blocked or fail to load (slow/restrictive school wifi, an
-   extension, a network hiccup, etc.), the calls below throw — and previously
-   that throw happened *before* `let googleUser` had run. That left googleUser
-   permanently stuck in the "temporal dead zone", so ANY later code that touched
-   googleUser (like the Settings panel) would itself throw the instant it ran —
-   which is exactly why Settings silently failed to open. Declaring it up here
-   means Settings keeps working even if Firebase never loads. */
-let googleUser = null;
-let FIREBASE_OK = false;
-let fbAuth = null;
-let fbDB = null;
-
-try{
-  firebase.initializeApp(firebaseConfig);
-  fbAuth = firebase.auth();
-  fbDB = firebase.firestore();
-  fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
-  FIREBASE_OK = true;
-}catch(e){
-  // Firebase failed to load/initialize (e.g. blocked network, ad-blocker, offline).
-  // Don't let that take down the rest of the app — fall back to guest-only mode.
-  console.warn('Firebase failed to initialize — continuing in guest-only mode.', e);
-  document.getElementById('googleStep')?.classList.add('hidden');
-}
+firebase.initializeApp(firebaseConfig);
+const fbAuth = firebase.auth();
+const fbDB = firebase.firestore();
+fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
 
 async function signInWithGoogle(){
-  if(!FIREBASE_OK){
-    document.getElementById('googleSignInError').textContent = "Sign-in isn't available right now (couldn't reach Google). Please continue as a guest, or check your internet connection and reload.";
-    return;
-  }
   const btn = document.getElementById('googleSignInBtn');
   const label = document.getElementById('googleBtnLabel');
   const err = document.getElementById('googleSignInError');
@@ -2465,7 +2730,8 @@ async function signInWithGoogle(){
   }
 }
 
-if(FIREBASE_OK) fbAuth.onAuthStateChanged(async (user)=>{
+let googleUser = null;
+fbAuth.onAuthStateChanged(async (user)=>{
   googleUser = user;
   if(!user){
     // signed out — show the Google sign-in step
@@ -3667,7 +3933,7 @@ function renderReview(){
       <div class="review-status ${d.status}">${d.status}${d.bookmarked?' • ★ Bookmarked':''}</div>
       <div style="font-weight:700;margin-bottom:6px">${mathify(d.q)}</div>
       <div class="review-opts">${optsHtml}</div>
-      <div class="explain-box"><b>Explanation:</b> ${d.exp ? d.exp : 'Detailed explanation coming soon for this question — for now, refer to the chapter below.'}<br><b>Reference:</b> ${refLabel}</div>
+      <div class="explain-box">${d.exp ? `<b>Explanation:</b> ${d.exp}<br>` : ''}<b>Reference:</b> ${refLabel}</div>
     `;
     wrap.appendChild(card);
   });
