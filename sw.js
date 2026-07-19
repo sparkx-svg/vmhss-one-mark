@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vm-one-marks-v2'; // bumped so old caches get wiped out on next visit
+const CACHE_NAME = 'vm-one-marks-v3'; // bumped again for the Settings/Firebase-resiliency fix
 const APP_SHELL = [
   './',
   './index.html',

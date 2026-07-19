@@ -739,31 +739,31 @@ const CHAPTERS_CA = [
 
 /* ================= MATHS QUESTION BANK (12th Std, Book Back 1 Mark PDF) ================= */
 const MU1_MATRICES = [
-{q:"If |adj(adj A)| = |A|⁹, then the order of the square matrix A is",options:["3","4","2","5"],correct:1},
-{q:"If A is a 3×3 non-singular matrix such that AAᵀ = AᵀA and B = A⁻¹Aᵀ, then BBᵀ =",options:["A","B","I₃","Bᵀ"],correct:2},
-{q:"If A = [3,5;1,2], B = adj A and C = 3A, then |adj B| / |C| =",options:["1/3","1/9","1/4","1"],correct:1},
-{q:"If A[1,-2;1,4] = [6,0;0,6], then A =",options:["[1,-2;1,4]","[1,2;-1,4]","[4,2;-1,1]","[4,-1;2,1]"],correct:2},
-{q:"If A = [7,3;4,2], then 9I₂ - A =",options:["A⁻¹","A⁻¹/2","3A⁻¹","2A⁻¹"],correct:3},
-{q:"If A = [2,0;1,5] and B = [1,4;2,0], then |adj(AB)| =",options:["-40","-80","-60","-20"],correct:1},
-{q:"If P = [1,x,0;1,3,0;2,4,-2] is the adjoint of a 3×3 matrix A and |A| = 4, then x is",options:["15","12","14","11"],correct:3},
-{q:"If A = [3,1,-1;2,-2,0;1,2,-1] and A⁻¹ = [a11,a12,a13;a21,a22,a23;a31,a32,a33], then the value of a23 is",options:["0","-2","-3","-1"],correct:3},
-{q:"If A, B and C are invertible matrices of some order, then which one of the following is NOT true?",options:["adj A = |A| A⁻¹","adj (AB) = (adj A)(adj B)","det A⁻¹ = (det A)⁻¹","(ABC)⁻¹ = C⁻¹B⁻¹A⁻¹"],correct:1},
-{q:"If (AB)⁻¹ = [12,-17;-19,27] and A⁻¹ = [1,-1;-2,3], then B⁻¹ =",options:["[2,-5;-3,8]","[8,5;3,2]","[3,1;2,1]","[8,-5;-3,2]"],correct:0},
-{q:"If AᵀA⁻¹ is symmetric, then A² =",options:["A⁻¹","(Aᵀ)²","Aᵀ","(A⁻¹)²"],correct:1},
-{q:"If A is a non-singular matrix such that A⁻¹ = [5,3;-2,-1], then (Aᵀ)⁻¹ =",options:["[-5,3;2,1]","[5,3;-2,-1]","[-1,-3;2,5]","[5,-2;3,-1]"],correct:3},
-{q:"If A = [3/5,4/5;x,3/5] and Aᵀ = A⁻¹, then the value of x is",options:["-4/5","-3/5","3/5","-4/5 (again)"],correct:0},
-{q:"If A = [1,tan(θ/2);-tan(θ/2),1] and AB = I₂, then B =",options:["cos²(θ/2)·A","cos²(θ/2)·Aᵀ","(cos 2θ)·I","sin²(θ/2)·A"],correct:1},
-{q:"If A = [cosθ,sinθ;-sinθ,cosθ] and A(adj A) = [k,0;0,k], then k =",options:["0","sinθ","cosθ","1"],correct:3},
-{q:"If A = [2,3;5,-2] is such that A⁻¹ = λA, then λ is",options:["17","14","19","21"],correct:2},
-{q:"If adj A = [2,3;4,-1] and adj B = [1,-2;-3,1], then adj(AB) is",options:["[-7,-1;7,-9]","[-6,5;-2,-10]","[-7,7;-1,-9]","[-6,-2;5,-10]"],correct:1},
+{q:"If |adj(adj A)| = |A|⁹, then the order of the square matrix A is",options:["3","4","2","5"],correct:1,exp:"|adj(adj A)| = |A|^((n-1)²) for an n×n matrix; setting (n-1)²=9 gives n=4."},
+{q:"If A is a 3×3 non-singular matrix such that AAᵀ = AᵀA and B = A⁻¹Aᵀ, then BBᵀ =",options:["A","B","I₃","Bᵀ"],correct:2,exp:"Using AAᵀ=AᵀA, BBᵀ = A⁻¹AᵀA(A⁻¹)ᵀ simplifies to the identity matrix I₃."},
+{q:"If A = [3,5;1,2], B = adj A and C = 3A, then |adj B| / |C| =",options:["1/3","1/9","1/4","1"],correct:1,exp:"For a 2×2 matrix, |adjA|=|A| and |adj(adjA)|=|A|; with |A|=1 here, |adjB|/|C| = 1/|3A| = 1/9."},
+{q:"If A[1,-2;1,4] = [6,0;0,6], then A =",options:["[1,-2;1,4]","[1,2;-1,4]","[4,2;-1,1]","[4,-1;2,1]"],correct:2,exp:"From AM=6I, A = 6M⁻¹; computing M⁻¹ for M=[1,-2;1,4] gives A=[4,2;-1,1]."},
+{q:"If A = [7,3;4,2], then 9I₂ - A =",options:["A⁻¹","A⁻¹/2","3A⁻¹","2A⁻¹"],correct:3,exp:"Since A⁻¹ = adjA/|A| and |A|=2 here, 9I-A works out to exactly 2A⁻¹."},
+{q:"If A = [2,0;1,5] and B = [1,4;2,0], then |adj(AB)| =",options:["-40","-80","-60","-20"],correct:1,exp:"For a 2×2 matrix, |adj(AB)| = |AB| = |A||B| = 10×(-8) = -80."},
+{q:"If P = [1,x,0;1,3,0;2,4,-2] is the adjoint of a 3×3 matrix A and |A| = 4, then x is",options:["15","12","14","11"],correct:3,exp:"Expanding |P| along the third column and equating it to |adjA|=|A|²=16 gives x=11."},
+{q:"If A = [3,1,-1;2,-2,0;1,2,-1] and A⁻¹ = [a11,a12,a13;a21,a22,a23;a31,a32,a33], then the value of a23 is",options:["0","-2","-3","-1"],correct:3,exp:"The (2,3) entry of A⁻¹ equals the cofactor C₃₂ divided by |A|; computing both gives -1."},
+{q:"If A, B and C are invertible matrices of some order, then which one of the following is NOT true?",options:["adj A = |A| A⁻¹","adj (AB) = (adj A)(adj B)","det A⁻¹ = (det A)⁻¹","(ABC)⁻¹ = C⁻¹B⁻¹A⁻¹"],correct:1,exp:"The correct identity is adj(AB) = (adjB)(adjA) — reversed order — so the given statement adj(AB)=(adjA)(adjB) is false."},
+{q:"If (AB)⁻¹ = [12,-17;-19,27] and A⁻¹ = [1,-1;-2,3], then B⁻¹ =",options:["[2,-5;-3,8]","[8,5;3,2]","[3,1;2,1]","[8,-5;-3,2]"],correct:0,exp:"Using (AB)⁻¹=B⁻¹A⁻¹, recover A from A⁻¹, then B⁻¹=(AB)⁻¹·A, which gives [2,-5;-3,8]."},
+{q:"If AᵀA⁻¹ is symmetric, then A² =",options:["A⁻¹","(Aᵀ)²","Aᵀ","(A⁻¹)²"],correct:1,exp:"Expanding the symmetry condition (AᵀA⁻¹)ᵀ=AᵀA⁻¹ and simplifying leads to A²=(Aᵀ)²."},
+{q:"If A is a non-singular matrix such that A⁻¹ = [5,3;-2,-1], then (Aᵀ)⁻¹ =",options:["[-5,3;2,1]","[5,3;-2,-1]","[-1,-3;2,5]","[5,-2;3,-1]"],correct:3,exp:"Using the identity (Aᵀ)⁻¹ = (A⁻¹)ᵀ, simply transpose the given A⁻¹."},
+{q:"If A = [3/5,4/5;x,3/5] and Aᵀ = A⁻¹, then the value of x is",options:["-4/5","-3/5","3/5","-4/5 (again)"],correct:0,exp:"Aᵀ=A⁻¹ means A is orthogonal (AAᵀ=I); equating entries of AAᵀ to I gives x=-4/5."},
+{q:"If A = [1,tan(θ/2);-tan(θ/2),1] and AB = I₂, then B =",options:["cos²(θ/2)·A","cos²(θ/2)·Aᵀ","(cos 2θ)·I","sin²(θ/2)·A"],correct:1,exp:"B=A⁻¹=adjA/|A|; since |A|=sec²(θ/2) here, B simplifies to cos²(θ/2)·Aᵀ."},
+{q:"If A = [cosθ,sinθ;-sinθ,cosθ] and A(adj A) = [k,0;0,k], then k =",options:["0","sinθ","cosθ","1"],correct:3,exp:"By the identity A(adjA)=|A|I, and |A|=cos²θ+sin²θ=1 here, so k=1."},
+{q:"If A = [2,3;5,-2] is such that A⁻¹ = λA, then λ is",options:["17","14","19","21"],correct:2,exp:"Since A⁻¹=adjA/|A| and |A|=-19 for this matrix, A⁻¹=-(1/19)A, so the key value is 19."},
+{q:"If adj A = [2,3;4,-1] and adj B = [1,-2;-3,1], then adj(AB) is",options:["[-7,-1;7,-9]","[-6,5;-2,-10]","[-7,7;-1,-9]","[-6,-2;5,-10]"],correct:1,exp:"Using adj(AB) = (adjB)(adjA), multiplying the given adjoints in reversed order gives [-6,5;-2,-10]."},
 {q:"The rank of the matrix formed by rows (1,2),(2,4),(-1,-2),(3,4),(6,8),(-3,-4) is",options:["1","2","4","3"],correct:0},
-{q:"If xᵃyᵇ = eᵐ, xᶜyᵈ = eⁿ, with Δ1=|m,b;n,d|, Δ2=|a,m;c,n|, Δ3=|a,b;c,d|, then x and y are respectively",options:["e^(Δ1/Δ2), e^(Δ3/Δ1)","log(Δ1/Δ3), log(Δ2/Δ3)","log(Δ2/Δ1), log(Δ3/Δ1)","e^(Δ1/Δ3), e^(Δ2/Δ3)"],correct:3},
-{q:"Which of the following is/are correct? (i) Adjoint of a symmetric matrix is also symmetric. (ii) Adjoint of a diagonal matrix is also diagonal. (iii) adj(λA) = λⁿ·adj(A). (iv) A(adj A) = (adj A)A = |A|I",options:["Only (i)","(ii) and (iii)","(iii) and (iv)","(i), (ii) and (iv)"],correct:3},
-{q:"If ρ(A) = ρ([A|B]), then the system AX = B of linear equations is",options:["consistent and has a unique solution","consistent","consistent and has infinitely many solutions","inconsistent"],correct:1},
-{q:"If θ ≠ 0 and the system x + (sinθ)y - (cosθ)z = 0, (cosθ)x - y + z = 0, (sinθ)x + y - z = 0 has a non-trivial solution, then θ is",options:["2π/3","3π/4","5π/6","π/4"],correct:3},
-{q:"The augmented matrix of a linear system is [1,2,7;0,1,λ+3;0,0,λ-7,μ+5]. The system has infinitely many solutions if",options:["λ=7, μ≠-5","λ=-7, μ=5","λ≠7, μ≠-5","λ=7, μ=-5"],correct:3},
-{q:"Let A = [2,-1,1;-1,2,-1;1,-1,2] and 4B = [3,1,-1;1,3,x;-1,1,3]. If B is the inverse of A, then the value of x is",options:["2","4","3","1"],correct:3},
-{q:"If A = [3,-3,4;2,-3,4;0,-1,1], then adj(adj A) is",options:["[3,-3,4;2,-3,4;0,-1,1]","[6,-6,8;4,-6,8;0,-2,2]","[-3,3,-4;-2,3,-4;0,1,-1]","[3,-3,4;0,-1,1;2,-3,4]"],correct:0}
+{q:"If xᵃyᵇ = eᵐ, xᶜyᵈ = eⁿ, with Δ1=|m,b;n,d|, Δ2=|a,m;c,n|, Δ3=|a,b;c,d|, then x and y are respectively",options:["e^(Δ1/Δ2), e^(Δ3/Δ1)","log(Δ1/Δ3), log(Δ2/Δ3)","log(Δ2/Δ1), log(Δ3/Δ1)","e^(Δ1/Δ3), e^(Δ2/Δ3)"],correct:3,exp:"Taking logs turns the system into a linear system in log x and log y; solving by Cramer's rule with determinants Δ1,Δ2,Δ3 gives x=e^(Δ1/Δ3), y=e^(Δ2/Δ3)."},
+{q:"Which of the following is/are correct? (i) Adjoint of a symmetric matrix is also symmetric. (ii) Adjoint of a diagonal matrix is also diagonal. (iii) adj(λA) = λⁿ·adj(A). (iv) A(adj A) = (adj A)A = |A|I",options:["Only (i)","(ii) and (iii)","(iii) and (iv)","(i), (ii) and (iv)"],correct:3,exp:"Adjoint of symmetric/diagonal matrices are themselves symmetric/diagonal, and A(adjA)=(adjA)A=|A|I always holds, but adj(λA)=λⁿ⁻¹adjA (not λⁿ), so only (i), (ii) and (iv) are correct."},
+{q:"If ρ(A) = ρ([A|B]), then the system AX = B of linear equations is",options:["consistent and has a unique solution","consistent","consistent and has infinitely many solutions","inconsistent"],correct:1,exp:"Equal rank of the coefficient and augmented matrices guarantees only that the system is consistent — not necessarily a unique solution."},
+{q:"If θ ≠ 0 and the system x + (sinθ)y - (cosθ)z = 0, (cosθ)x - y + z = 0, (sinθ)x + y - z = 0 has a non-trivial solution, then θ is",options:["2π/3","3π/4","5π/6","π/4"],correct:3,exp:"A homogeneous system has a non-trivial solution only when its coefficient determinant is zero; solving this condition gives θ=π/4."},
+{q:"The augmented matrix of a linear system is [1,2,7;0,1,λ+3;0,0,λ-7,μ+5]. The system has infinitely many solutions if",options:["λ=7, μ≠-5","λ=-7, μ=5","λ≠7, μ≠-5","λ=7, μ=-5"],correct:3,exp:"For infinitely many solutions the last row of the row-reduced augmented matrix must vanish entirely, requiring λ=7 and μ=-5."},
+{q:"Let A = [2,-1,1;-1,2,-1;1,-1,2] and 4B = [3,1,-1;1,3,x;-1,1,3]. If B is the inverse of A, then the value of x is",options:["2","4","3","1"],correct:3,exp:"Since B=A⁻¹, A(4B)=4I; setting the (2,3) entry of the product to zero gives x=1."},
+{q:"If A = [3,-3,4;2,-3,4;0,-1,1], then adj(adj A) is",options:["[3,-3,4;2,-3,4;0,-1,1]","[6,-6,8;4,-6,8;0,-2,2]","[-3,3,-4;-2,3,-4;0,1,-1]","[3,-3,4;0,-1,1;2,-3,4]"],correct:0,exp:"For a 3×3 matrix, adj(adjA) = |A|^(n-2)·A = |A|·A; since |A|=1 here, adj(adjA) equals A itself."}
 ];
 
 const MU2_COMPLEX = [
@@ -2411,12 +2411,38 @@ const firebaseConfig = {
   messagingSenderId: "850933256837",
   appId: "1:850933256837:web:ae07a4b333e8e7b0870fec"
 };
-firebase.initializeApp(firebaseConfig);
-const fbAuth = firebase.auth();
-const fbDB = firebase.firestore();
-fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
+
+/* FIX: googleUser must exist BEFORE the firebase.* calls below run. If Firebase's
+   CDN scripts get blocked or fail to load (slow/restrictive school wifi, an
+   extension, a network hiccup, etc.), the calls below throw — and previously
+   that throw happened *before* `let googleUser` had run. That left googleUser
+   permanently stuck in the "temporal dead zone", so ANY later code that touched
+   googleUser (like the Settings panel) would itself throw the instant it ran —
+   which is exactly why Settings silently failed to open. Declaring it up here
+   means Settings keeps working even if Firebase never loads. */
+let googleUser = null;
+let FIREBASE_OK = false;
+let fbAuth = null;
+let fbDB = null;
+
+try{
+  firebase.initializeApp(firebaseConfig);
+  fbAuth = firebase.auth();
+  fbDB = firebase.firestore();
+  fbAuth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(e=>console.warn('Persistence setup failed', e));
+  FIREBASE_OK = true;
+}catch(e){
+  // Firebase failed to load/initialize (e.g. blocked network, ad-blocker, offline).
+  // Don't let that take down the rest of the app — fall back to guest-only mode.
+  console.warn('Firebase failed to initialize — continuing in guest-only mode.', e);
+  document.getElementById('googleStep')?.classList.add('hidden');
+}
 
 async function signInWithGoogle(){
+  if(!FIREBASE_OK){
+    document.getElementById('googleSignInError').textContent = "Sign-in isn't available right now (couldn't reach Google). Please continue as a guest, or check your internet connection and reload.";
+    return;
+  }
   const btn = document.getElementById('googleSignInBtn');
   const label = document.getElementById('googleBtnLabel');
   const err = document.getElementById('googleSignInError');
@@ -2439,8 +2465,7 @@ async function signInWithGoogle(){
   }
 }
 
-let googleUser = null;
-fbAuth.onAuthStateChanged(async (user)=>{
+if(FIREBASE_OK) fbAuth.onAuthStateChanged(async (user)=>{
   googleUser = user;
   if(!user){
     // signed out — show the Google sign-in step
@@ -3642,7 +3667,7 @@ function renderReview(){
       <div class="review-status ${d.status}">${d.status}${d.bookmarked?' • ★ Bookmarked':''}</div>
       <div style="font-weight:700;margin-bottom:6px">${mathify(d.q)}</div>
       <div class="review-opts">${optsHtml}</div>
-      <div class="explain-box">${d.exp ? `<b>Explanation:</b> ${d.exp}<br>` : ''}<b>Reference:</b> ${refLabel}</div>
+      <div class="explain-box"><b>Explanation:</b> ${d.exp ? d.exp : 'Detailed explanation coming soon for this question — for now, refer to the chapter below.'}<br><b>Reference:</b> ${refLabel}</div>
     `;
     wrap.appendChild(card);
   });
