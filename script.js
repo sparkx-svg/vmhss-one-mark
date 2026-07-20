@@ -2651,6 +2651,19 @@ function scheduleSave(){
     }, 300);
   }
 }
+/* Checks the shared 'banned' collection for this student's own uid.
+   Each student can only read their own ban record (see Firestore rules) —
+   this is enough to enforce a teacher's restriction without exposing who
+   else is banned to non-admins. */
+async function isUserBanned(uid){
+  try{
+    const doc = await fbDB.collection('banned').doc(uid).get();
+    return doc.exists;
+  }catch(e){
+    console.warn('Ban check failed (defaulting to not-banned)', e);
+    return false;
+  }
+}
 async function loadCloudData(uid){
   CLOUD.mode = 'cloud';
   CLOUD.uid = uid;
@@ -2738,11 +2751,21 @@ fbAuth.onAuthStateChanged(async (user)=>{
     document.getElementById('googleStep').classList.remove('hidden');
     document.getElementById('cloudLoading').classList.add('hidden');
     document.getElementById('classStep').classList.add('hidden');
+    document.getElementById('blockedStep').classList.add('hidden');
     return;
   }
-  // signed in — fetch this student's saved data from Firestore
+  // signed in — first check whether a teacher has restricted this account
   document.getElementById('googleStep').classList.add('hidden');
   document.getElementById('cloudLoading').classList.remove('hidden');
+  const banned = await isUserBanned(user.uid);
+  if(banned){
+    document.getElementById('cloudLoading').classList.add('hidden');
+    document.getElementById('blockedStep').classList.remove('hidden');
+    return;
+  }
+
+  // not banned — fetch this student's saved data from Firestore
+  document.getElementById('blockedStep').classList.add('hidden');
   await loadCloudData(user.uid);
   document.getElementById('cloudLoading').classList.add('hidden');
 
@@ -2889,6 +2912,10 @@ function mirrorToClassLeaderboard(){
    is an acceptable trade-off for a free, backend-less school project.
    Change the password below before you publish this. */
 const ADMIN_PASSWORD = "vmhss2026";
+/* This must exactly match the email in the isAdmin() function in your Firestore
+   rules. The password above only hides/shows the panel in the browser — this
+   email is what Firestore actually checks before allowing any delete/ban. */
+const ADMIN_EMAIL = "immortalassassin064@gmail.com";
 
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2914,21 +2941,49 @@ async function adminLogin(){
 }
 
 let adminData = [];
+let bannedData = [];
 let adminSort = {key:'xp', dir:'desc'};
+
+function isSignedInAsAdmin(){
+  return CLOUD.mode === 'cloud' && googleUser && googleUser.email === ADMIN_EMAIL;
+}
+
+function renderAdminIdentityNotice(){
+  const el = document.getElementById('adminIdentityNotice');
+  if(!el) return;
+  if(isSignedInAsAdmin()){
+    el.className = 'admin-identity-notice';
+    el.textContent = `✅ Signed in as ${ADMIN_EMAIL} — delete/ban actions are authorized by Firestore.`;
+  } else {
+    el.className = 'admin-identity-notice warn';
+    const current = (CLOUD.mode === 'cloud' && googleUser) ? googleUser.email : (CLOUD.mode === 'guest' ? 'Guest (not signed in)' : 'not signed in');
+    el.textContent = `⚠️ You're viewing as ${current}. You can browse and export data, but Delete/Ban/Unban will be rejected by Firestore unless you're signed in with the authorized teacher account (${ADMIN_EMAIL}).`;
+  }
+}
 
 async function openAdminScreen(){
   document.getElementById('adminScreen').classList.remove('hidden');
-  document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="6">Loading…</td></tr>`;
+  renderAdminIdentityNotice();
+  document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="7">Loading…</td></tr>`;
+  document.getElementById('bannedTableBody').innerHTML = `<tr><td colspan="4">Loading…</td></tr>`;
   try{
     const snap = await fbDB.collection('leaderboard').get();
     adminData = snap.docs.map(doc=>({id:doc.id, ...doc.data()}));
   }catch(e){
     console.warn('Admin fetch failed', e);
     adminData = [];
-    document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="6">Couldn't load student data — check the browser console for details.</td></tr>`;
-    return;
+    document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="7">Couldn't load student data — check the browser console for details.</td></tr>`;
   }
   renderAdminTable();
+
+  try{
+    const bsnap = await fbDB.collection('banned').get();
+    bannedData = bsnap.docs.map(doc=>({id:doc.id, ...doc.data()}));
+  }catch(e){
+    console.warn('Banned list fetch failed (expected if not signed in as admin)', e);
+    bannedData = [];
+  }
+  renderBannedTable();
 }
 function closeAdminScreen(){
   document.getElementById('adminScreen').classList.add('hidden');
@@ -2958,8 +3013,76 @@ function renderAdminTable(){
   if(countEl) countEl.textContent = `${rows.length} student${rows.length===1?'':'s'}`;
   document.getElementById('adminTableBody').innerHTML = rows.length ? rows.map(d=>{
     const last = (d.updatedAt && d.updatedAt.toDate) ? d.updatedAt.toDate().toLocaleString() : '—';
-    return `<tr><td>${escapeHtml(d.name||'-')}</td><td>${escapeHtml(d.cls||'-')}</td><td>${d.xp||0}</td><td>${d.level||1}</td><td>${d.testsCompleted||0}</td><td>${last}</td></tr>`;
-  }).join('') : `<tr><td colspan="6">No students match.</td></tr>`;
+    const safeName = escapeHtml(d.name||'Unknown');
+    return `<tr>
+      <td>${safeName}</td><td>${escapeHtml(d.cls||'-')}</td><td>${d.xp||0}</td><td>${d.level||1}</td><td>${d.testsCompleted||0}</td><td>${last}</td>
+      <td><div class="admin-row-actions">
+        <button class="admin-action-btn" onclick="removeFromLeaderboard('${d.id}', '${safeName.replace(/'/g,"\\'")}')" title="Remove this entry from the leaderboard only">Remove</button>
+        <button class="admin-action-btn ban" onclick="banStudent('${d.id}', '${safeName.replace(/'/g,"\\'")}')" title="Remove from leaderboard AND block them from using the app again">Ban</button>
+      </div></td>
+    </tr>`;
+  }).join('') : `<tr><td colspan="7">No students match.</td></tr>`;
+}
+function renderBannedTable(){
+  const body = document.getElementById('bannedTableBody');
+  if(!bannedData.length){
+    body.innerHTML = `<tr><td colspan="4">No banned accounts.</td></tr>`;
+    return;
+  }
+  body.innerHTML = bannedData.map(d=>{
+    const when = (d.bannedAt && d.bannedAt.toDate) ? d.bannedAt.toDate().toLocaleString() : '—';
+    const safeName = escapeHtml(d.name||'Unknown');
+    return `<tr>
+      <td>${safeName}</td><td>${escapeHtml(d.cls||'-')}</td><td>${when}</td>
+      <td><button class="admin-action-btn unban" onclick="unbanStudent('${d.id}', '${safeName.replace(/'/g,"\\'")}')">Unban</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function adminActionError(e){
+  console.warn('Admin action failed', e);
+  if(e && e.code === 'permission-denied'){
+    showToast(`Blocked by Firestore — sign in as ${ADMIN_EMAIL} to do this.`, 'info');
+  } else {
+    showToast('Something went wrong. Please try again.', 'info');
+  }
+}
+
+async function removeFromLeaderboard(uid, name){
+  if(!confirm(`Remove ${name} from the class leaderboard? They can reappear next time they complete a test — use "Ban" to stop that.`)) return;
+  try{
+    await fbDB.collection('leaderboard').doc(uid).delete();
+    adminData = adminData.filter(d => d.id !== uid);
+    renderAdminTable();
+    showToast(`${name} removed from the leaderboard.`, 'success');
+  }catch(e){ adminActionError(e); }
+}
+
+async function banStudent(uid, name){
+  if(!confirm(`Ban ${name}? This removes them from the leaderboard now and blocks them from using the app on future sign-ins, until you unban them.`)) return;
+  try{
+    await fbDB.collection('banned').doc(uid).set({
+      name, cls: (adminData.find(d=>d.id===uid) || {}).cls || '-',
+      bannedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    await fbDB.collection('leaderboard').doc(uid).delete().catch(()=>{});
+    adminData = adminData.filter(d => d.id !== uid);
+    renderAdminTable();
+    const bsnap = await fbDB.collection('banned').get();
+    bannedData = bsnap.docs.map(doc=>({id:doc.id, ...doc.data()}));
+    renderBannedTable();
+    showToast(`${name} has been banned.`, 'success');
+  }catch(e){ adminActionError(e); }
+}
+
+async function unbanStudent(uid, name){
+  if(!confirm(`Unban ${name}? They'll be able to sign in and use the app again.`)) return;
+  try{
+    await fbDB.collection('banned').doc(uid).delete();
+    bannedData = bannedData.filter(d => d.id !== uid);
+    renderBannedTable();
+    showToast(`${name} has been unbanned.`, 'success');
+  }catch(e){ adminActionError(e); }
 }
 function exportAdminCSV(){
   if(!adminData.length){ alert('No student data loaded yet.'); return; }

@@ -59,6 +59,16 @@
       <div class="welcome-error" id="googleSignInError"></div>
     </div>
 
+    <!-- shown instead of the app if a teacher has restricted this account -->
+    <div id="blockedStep" class="step hidden">
+      <p class="tag">🚫 Access restricted</p>
+      <p style="color:var(--muted);font-size:.88rem;line-height:1.5">
+        A teacher has restricted this account from using this practice portal.
+        If you believe this is a mistake, please speak to your teacher.
+      </p>
+      <button class="btn btn-outline" onclick="confirmLogout()" style="margin-top:14px">Sign out</button>
+    </div>
+
     <!-- shown briefly while we fetch the student's saved data from Firestore -->
     <div id="cloudLoading" class="auth-checking hidden">
       <span class="spinner-standalone"></span>
@@ -587,6 +597,7 @@
       <button class="btn btn-outline btn-sm" onclick="closeAdminScreen()">✕ Close</button>
     </div>
   </div>
+  <div id="adminIdentityNotice" class="admin-identity-notice"></div>
   <div class="admin-search-row">
     <input type="text" id="adminSearch" class="admin-input" placeholder="Search by name or class…" oninput="renderAdminTable()">
     <span id="adminCount" class="admin-count"></span>
@@ -594,9 +605,19 @@
   <div class="admin-table-wrap">
     <table class="admin-table" id="adminTable">
       <thead>
-        <tr><th onclick="sortAdminBy('name')">Name ⇅</th><th onclick="sortAdminBy('cls')">Class ⇅</th><th onclick="sortAdminBy('xp')">XP ⇅</th><th onclick="sortAdminBy('level')">Level ⇅</th><th onclick="sortAdminBy('testsCompleted')">Tests ⇅</th><th onclick="sortAdminBy('updatedAt')">Last Active ⇅</th></tr>
+        <tr><th onclick="sortAdminBy('name')">Name ⇅</th><th onclick="sortAdminBy('cls')">Class ⇅</th><th onclick="sortAdminBy('xp')">XP ⇅</th><th onclick="sortAdminBy('level')">Level ⇅</th><th onclick="sortAdminBy('testsCompleted')">Tests ⇅</th><th onclick="sortAdminBy('updatedAt')">Last Active ⇅</th><th>Actions</th></tr>
       </thead>
       <tbody id="adminTableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="admin-header" style="margin-top:28px">
+    <h2>🚫 Banned Accounts</h2>
+  </div>
+  <div class="admin-table-wrap">
+    <table class="admin-table" id="bannedTable">
+      <thead><tr><th>Name</th><th>Class</th><th>Banned On</th><th>Actions</th></tr></thead>
+      <tbody id="bannedTableBody"><tr><td colspan="4">Loading…</td></tr></tbody>
     </table>
   </div>
 </div>

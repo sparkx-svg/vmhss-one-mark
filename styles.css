@@ -912,3 +912,18 @@ html[data-fontsize="large"]{font-size:126%}
   animation-iteration-count:1 !important;
   transition-duration:0.001ms !important;
 }
+
+/* ================= ADMIN MODERATION ================= */
+.admin-identity-notice{
+  max-width:1000px;margin:0 auto 14px;padding:10px 14px;border-radius:12px;font-size:.8rem;
+  background:rgba(var(--glow-rgb),.08);border:1px solid var(--border);color:var(--muted);
+}
+.admin-identity-notice.warn{background:rgba(220,38,38,.08);color:var(--error);border-color:rgba(220,38,38,.3)}
+.admin-row-actions{display:flex;gap:6px;flex-wrap:wrap}
+.admin-action-btn{
+  border:1px solid var(--border);background:var(--card);border-radius:8px;padding:4px 9px;
+  font-size:.72rem;font-weight:700;cursor:pointer;white-space:nowrap;
+}
+.admin-action-btn:hover{background:rgba(var(--glow-rgb),.08)}
+.admin-action-btn.ban{color:var(--error);border-color:rgba(220,38,38,.4)}
+.admin-action-btn.unban{color:var(--accent);border-color:rgba(5,150,105,.4)}
