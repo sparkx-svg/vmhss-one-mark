@@ -2912,10 +2912,10 @@ function mirrorToClassLeaderboard(){
    is an acceptable trade-off for a free, backend-less school project.
    Change the password below before you publish this. */
 const ADMIN_PASSWORD = "vmhss2026";
-/* This must exactly match the email in the isAdmin() function in your Firestore
-   rules. The password above only hides/shows the panel in the browser — this
-   email is what Firestore actually checks before allowing any delete/ban. */
-const ADMIN_EMAIL = "immortalassassin064@gmail.com";
+/* This must exactly match the isAdmin() list in your Firestore rules. The
+   password gate only hides/shows the panel in the browser — these emails are
+   what Firestore actually checks before allowing any delete/ban. */
+const ADMIN_EMAILS = ["immortalassassin064@gmail.com", "magnate2242@gmail.com"];
 
 function escapeHtml(s){
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -2945,7 +2945,7 @@ let bannedData = [];
 let adminSort = {key:'xp', dir:'desc'};
 
 function isSignedInAsAdmin(){
-  return CLOUD.mode === 'cloud' && googleUser && googleUser.email === ADMIN_EMAIL;
+  return CLOUD.mode === 'cloud' && googleUser && ADMIN_EMAILS.includes(googleUser.email);
 }
 
 function applyAdminModeVisibility(){
@@ -3041,7 +3041,7 @@ function renderBannedTable(){
 function adminActionError(e){
   console.warn('Admin action failed', e);
   if(e && e.code === 'permission-denied'){
-    showToast(`Blocked by Firestore — sign in as ${ADMIN_EMAIL} to do this.`, 'info');
+    showToast(`Blocked by Firestore — sign in as an authorized teacher account to do this.`, 'info');
   } else {
     showToast('Something went wrong. Please try again.', 'info');
   }
