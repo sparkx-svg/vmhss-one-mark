@@ -2948,23 +2948,17 @@ function isSignedInAsAdmin(){
   return CLOUD.mode === 'cloud' && googleUser && googleUser.email === ADMIN_EMAIL;
 }
 
-function renderAdminIdentityNotice(){
-  const el = document.getElementById('adminIdentityNotice');
-  if(!el) return;
-  if(isSignedInAsAdmin()){
-    el.className = 'admin-identity-notice';
-    el.textContent = `✅ Signed in as ${ADMIN_EMAIL} — delete/ban actions are authorized by Firestore.`;
-  } else {
-    el.className = 'admin-identity-notice warn';
-    const current = (CLOUD.mode === 'cloud' && googleUser) ? googleUser.email : (CLOUD.mode === 'guest' ? 'Guest (not signed in)' : 'not signed in');
-    el.textContent = `⚠️ You're viewing as ${current}. You can browse and export data, but Delete/Ban/Unban will be rejected by Firestore unless you're signed in with the authorized teacher account (${ADMIN_EMAIL}).`;
-  }
+function applyAdminModeVisibility(){
+  const admin = isSignedInAsAdmin();
+  document.getElementById('adminActionsHeaderCell')?.classList.toggle('hidden', !admin);
+  document.getElementById('bannedSection')?.classList.toggle('hidden', !admin);
 }
 
 async function openAdminScreen(){
   document.getElementById('adminScreen').classList.remove('hidden');
-  renderAdminIdentityNotice();
-  document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="7">Loading…</td></tr>`;
+  applyAdminModeVisibility();
+  const colCount = isSignedInAsAdmin() ? 7 : 6;
+  document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="${colCount}">Loading…</td></tr>`;
   document.getElementById('bannedTableBody').innerHTML = `<tr><td colspan="4">Loading…</td></tr>`;
   try{
     const snap = await fbDB.collection('leaderboard').get();
@@ -2972,18 +2966,20 @@ async function openAdminScreen(){
   }catch(e){
     console.warn('Admin fetch failed', e);
     adminData = [];
-    document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="7">Couldn't load student data — check the browser console for details.</td></tr>`;
+    document.getElementById('adminTableBody').innerHTML = `<tr><td colspan="${colCount}">Couldn't load student data — check the browser console for details.</td></tr>`;
   }
   renderAdminTable();
 
-  try{
-    const bsnap = await fbDB.collection('banned').get();
-    bannedData = bsnap.docs.map(doc=>({id:doc.id, ...doc.data()}));
-  }catch(e){
-    console.warn('Banned list fetch failed (expected if not signed in as admin)', e);
-    bannedData = [];
+  if(isSignedInAsAdmin()){
+    try{
+      const bsnap = await fbDB.collection('banned').get();
+      bannedData = bsnap.docs.map(doc=>({id:doc.id, ...doc.data()}));
+    }catch(e){
+      console.warn('Banned list fetch failed', e);
+      bannedData = [];
+    }
+    renderBannedTable();
   }
-  renderBannedTable();
 }
 function closeAdminScreen(){
   document.getElementById('adminScreen').classList.add('hidden');
@@ -2994,6 +2990,7 @@ function sortAdminBy(key){
   renderAdminTable();
 }
 function renderAdminTable(){
+  const admin = isSignedInAsAdmin();
   const searchEl = document.getElementById('adminSearch');
   const q = (searchEl && searchEl.value || '').trim().toLowerCase();
   let rows = adminData.filter(d => !q || (d.name||'').toLowerCase().includes(q) || (d.cls||'').toLowerCase().includes(q));
@@ -3011,17 +3008,19 @@ function renderAdminTable(){
   });
   const countEl = document.getElementById('adminCount');
   if(countEl) countEl.textContent = `${rows.length} student${rows.length===1?'':'s'}`;
+  const colCount = admin ? 7 : 6;
   document.getElementById('adminTableBody').innerHTML = rows.length ? rows.map(d=>{
     const last = (d.updatedAt && d.updatedAt.toDate) ? d.updatedAt.toDate().toLocaleString() : '—';
     const safeName = escapeHtml(d.name||'Unknown');
-    return `<tr>
-      <td>${safeName}</td><td>${escapeHtml(d.cls||'-')}</td><td>${d.xp||0}</td><td>${d.level||1}</td><td>${d.testsCompleted||0}</td><td>${last}</td>
-      <td><div class="admin-row-actions">
+    const actionsCell = admin ? `<td><div class="admin-row-actions">
         <button class="admin-action-btn" onclick="removeFromLeaderboard('${d.id}', '${safeName.replace(/'/g,"\\'")}')" title="Remove this entry from the leaderboard only">Remove</button>
         <button class="admin-action-btn ban" onclick="banStudent('${d.id}', '${safeName.replace(/'/g,"\\'")}')" title="Remove from leaderboard AND block them from using the app again">Ban</button>
-      </div></td>
+      </div></td>` : '';
+    return `<tr>
+      <td>${safeName}</td><td>${escapeHtml(d.cls||'-')}</td><td>${d.xp||0}</td><td>${d.level||1}</td><td>${d.testsCompleted||0}</td><td>${last}</td>
+      ${actionsCell}
     </tr>`;
-  }).join('') : `<tr><td colspan="7">No students match.</td></tr>`;
+  }).join('') : `<tr><td colspan="${colCount}">No students match.</td></tr>`;
 }
 function renderBannedTable(){
   const body = document.getElementById('bannedTableBody');
