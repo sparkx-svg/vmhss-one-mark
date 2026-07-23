@@ -334,6 +334,8 @@ button{font-family:inherit;cursor:pointer}
 
 footer{position:relative;z-index:1;text-align:center;color:var(--muted);font-size:.82rem;padding:26px 20px}
 footer .fname{font-weight:800;color:var(--primary)}
+/* Prevents the footer from scrolling up behind the fixed Next/Previous bar during a test */
+#testScreen:not(.hidden) ~ footer{display:none}
 .hidden{display:none !important}
 
 .credit-bar{
